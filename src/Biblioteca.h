@@ -31,7 +31,7 @@ class Biblioteca{
         void setAutor(string autor);
         void setAno(int ano);
 
-
+        virtual void imprimirBiblioteca();
 };
 
 

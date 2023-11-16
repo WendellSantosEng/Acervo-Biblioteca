@@ -40,5 +40,11 @@
         this->ano = ano;
     }
 
+    void Biblioteca::imprimirBiblioteca(){
+        cout << "Titulo: " << getTitulo() << endl;
+        cout << "Autor: " << getAutor() << endl;
+        cout << "Ano de publicacao: " << getAno() << endl;
+    }
+
 
 #endif
