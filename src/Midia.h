@@ -21,6 +21,4 @@ class Midia : public Biblioteca{
         void setIdioma(string idioma);
 
         virtual void imprimirMidia();
-
-
 };

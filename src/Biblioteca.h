@@ -8,12 +8,10 @@ class Biblioteca{
 
     //Atributos da classe mãe
     protected:
+
         string titulo;
         string autor;
         int ano;
-
-
-
     
     public:
 

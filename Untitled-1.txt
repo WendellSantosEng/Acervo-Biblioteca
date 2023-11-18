@@ -1,0 +1,48 @@
+setlocale(LC_ALL, "portuguese");
+system("chcp 1252 > nul");
+
+vector<Conta *> listContas;
+
+case 1:{
+    cout << "		Cadastro de conta poupan�a " << endl << endl;
+    ContaPoupanca *cp = new ContaPoupanca();
+    cadastrarContaPoupanca(cp);
+    listContas.push_back(cp);
+    cout << "Conta poupan�a cadastrada com sucesso!" << endl << endl;
+    break;
+}
+
+	cadastrarContaComum(cp);
+
+void cadastrarContaComum(Conta *c){
+	
+	string agencia;
+	string numConta;
+	string proprietario;
+	double saldo;
+	
+	cout << "Entre com a ag�ncia: ";
+	getline(cin, agencia);
+	c->setAgencia(agencia);
+	cin.clear();
+	fflush(stdin);
+	
+	cout << "Entre com o n�mero da conta: ";
+	getline(cin, numConta);
+	c->setNumConta(numConta);
+	cin.clear();
+	fflush(stdin);
+	
+	cout << "Entre com o propriet�rio da conta: ";
+	getline(cin, proprietario);
+	c->setProprietario(proprietario);
+	cin.clear();
+	fflush(stdin);
+	
+	cout << "Entre com o saldo da conta: ";
+	cin >> saldo;
+	c->setSaldo(saldo);
+	cin.clear();
+	fflush(stdin);	
+	
+}
