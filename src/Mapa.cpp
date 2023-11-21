@@ -1,6 +1,3 @@
-#ifndef MAPA_H
-#define MAPA_H
-
 #include "Mapa.h"
     
     Mapa::Mapa(string titulo, string autor, int ano, string escala) : Biblioteca(titulo, autor, ano){
@@ -28,5 +25,3 @@
 
         cout << "Escala: " << getEscala() << endl;
     }
-
-#endif

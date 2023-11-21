@@ -1,10 +1,12 @@
+#ifndef BIBLIOTECA_H
+#define BIBLIOTECA_H
+
 #include <iostream>
 #include <string>
 
 using namespace std;
 
 class Biblioteca{
-
 
     //Atributos da classe mãe
     protected:
@@ -31,12 +33,4 @@ class Biblioteca{
 
         virtual void imprimirBiblioteca();
 };
-
-
-
-
-
-
-
-
-
+#endif

@@ -1,3 +1,6 @@
+#ifndef CD_H
+#define CD_H
+
 #include "Midia.h"
 
 class CD : public Midia{
@@ -22,3 +25,5 @@ class CD : public Midia{
         void imprimirCD();
 
 };
+
+#endif

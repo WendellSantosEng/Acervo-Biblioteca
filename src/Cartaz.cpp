@@ -1,6 +1,3 @@
-#ifndef CARTAZ_H
-#define CARTAZ_H
-
 #include "Cartaz.h"
 
     Cartaz::Cartaz(string titulo, string autor, int ano, string dimensao){
@@ -29,5 +26,3 @@
 
         cout << "Dimensao: " << getDimensao() << endl;
     }
-
-#endif

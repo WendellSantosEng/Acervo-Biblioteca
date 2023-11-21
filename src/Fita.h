@@ -1,3 +1,6 @@
+#ifndef FITA_H
+#define FITA_H
+
 #include "Midia.h"
 
 enum{
@@ -24,3 +27,5 @@ class Fita : public Midia{
         void imprimirFita();
 
 };
+
+#endif

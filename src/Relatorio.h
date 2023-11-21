@@ -1,3 +1,6 @@
+#ifndef RELATORIO_H
+#define RELATORIO_H
+
 #include "Biblioteca.h"
 
 class Relatorio : public Biblioteca{
@@ -18,3 +21,5 @@ class Relatorio : public Biblioteca{
 
         void imprimirRelatorio();
 };
+
+#endif

@@ -1,6 +1,3 @@
-#ifndef MIDIA_H
-#define MIDIA_H
-
 #include "Midia.h"
     
     Midia::Midia(string titulo, string autor, int ano, string duracao, string idioma) : Biblioteca(titulo, autor, ano){
@@ -39,5 +36,3 @@
         cout << "Duracao: " << getDuracao();
         cout << "Idioma: " << getIdioma();
     }
-
-#endif

@@ -1,3 +1,6 @@
+#ifndef CARTAZ_H
+#define CARTAZ_H
+
 #include "Biblioteca.h"
 
 class Cartaz : public Biblioteca{
@@ -18,3 +21,5 @@ class Cartaz : public Biblioteca{
 
         void imprimirCartaz();
 };
+
+#endif

@@ -1,8 +1,4 @@
 #include "Biblioteca.h"
-//Colocar essa condição em todo .cpp
-
-#ifndef BIBLIOTECA_H
-#define BIBLIOTECA_H
 
     Biblioteca::Biblioteca(string titulo, string autor, int ano){
 
@@ -45,6 +41,3 @@
         cout << "Autor: " << getAutor() << endl;
         cout << "Ano de publicacao: " << getAno() << endl;
     }
-
-
-#endif

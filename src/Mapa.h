@@ -1,3 +1,6 @@
+#ifndef MAPA_H
+#define MAPA_H
+
 #include "Biblioteca.h"
 
 class Mapa : public Biblioteca{
@@ -21,3 +24,5 @@ class Mapa : public Biblioteca{
 
 
 };
+
+#endif

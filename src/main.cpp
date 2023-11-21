@@ -2,19 +2,19 @@
 #include <vector>
 
 #include "Biblioteca.h"
+#include "Midia.h"
 #include "CD.h"
 #include "Fita.h"
 #include "Mapa.h"
-#include "Midia.h"
 #include "Relatorio.h"
 #include "Cartaz.h"
 
 void cadastrarItem(vector<Biblioteca *> &listBiblioteca);
 void removerItem(vector<Biblioteca *> &listBiblioteca);
-void pesquisarItem(vector<Biblioteca *> &listBiblioteca);
+Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca);
 void emprestimoItem(vector<Biblioteca *> &listBiblioteca);
 
-void cadastrarItemAcervo(); // Propriedades Gerais
+void cadastrarItemAcervo(Biblioteca *biblioteca); // Propriedades Gerais
 void cadastrarMidia(Midia *midia); // Classe Mae Midia
 
 void cadastrarCD(CD *cd); 
@@ -26,6 +26,7 @@ void cadastrarRelatorio(Relatorio *relatorio);
 int main(){
 
     vector<Biblioteca *> listBiblioteca;
+    Biblioteca *item_pesquisa;
 
     int op,op2;
 
@@ -54,7 +55,9 @@ int main(){
                 break;
             case 3:
 
-                pesquisarItem(listBiblioteca);
+                item_pesquisa = pesquisarItem(listBiblioteca);
+                item_pesquisa->imprimirBiblioteca();
+                
                 break;
             case 4:
 
@@ -100,7 +103,8 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
             case 1:
                 
                 cout << "        Cadastro de CD      " << endl << endl;
-                CD *cd = new CD();
+                CD *cd;
+                cd = new CD();
                 cadastrarCD(cd);
                 listBiblioteca.push_back(cd);
                 cout << "CD cadastrado com sucesso!" << endl << endl; 
@@ -109,7 +113,8 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
             case 2:
                 
                 cout<< "        Cadastro de Fita         "<< endl;
-                Fita *fita = new Fita();
+                Fita *fita;
+                fita = new Fita();
                 cadastrarFita(fita);
                 listBiblioteca.push_back(fita);
                 cout << "Fita cadastrada com sucesso!" << endl << endl;
@@ -118,7 +123,8 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
             case 3:
 
                 cout << "       Cadastro de Mapa       " << endl;
-                Mapa *mapa = new Mapa();
+                Mapa *mapa; 
+                mapa = new Mapa();
                 cadastrarMapa(mapa);
                 listBiblioteca.push_back(mapa);
                 cout << "Mapa cadastrado com sucesso!" << endl << endl;
@@ -127,7 +133,8 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
             case 4:
 
                 cout << "       Cadastro de Cartaz      " << endl;
-                Cartaz *cartaz = new Cartaz;
+                Cartaz *cartaz;
+                cartaz = new Cartaz;
                 cadastrarCartaz(cartaz);
                 listBiblioteca.push_back(cartaz);
                 cout << "Cartaz cadastrado com sucesso!" << endl << endl;
@@ -136,7 +143,8 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
             case 5:
 
                 cout << "       Cadastro de Relatorio" << endl;
-                Relatorio *relatorio = new Relatorio();
+                Relatorio *relatorio;
+                relatorio = new Relatorio();
                 cadastrarRelatorio(relatorio);
                 listBiblioteca.push_back(relatorio);
                 cout << "Relatorio cadastrado com sucesso!" << endl << endl;
@@ -288,9 +296,32 @@ void removerItem(vector<Biblioteca *> &listBiblioteca){
 
 }
 
-void pesquisarItem(vector<Biblioteca *> &listBiblioteca){
+Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca){
 
+    string titulo, autor;
+    Biblioteca *biblioteca = NULL;
 
+    cout << "Digite o titulo: ";
+    getline(cin, titulo);
+    cin.clear();
+    fflush(stdin);
+    
+    cout << "Digite o autor: ";
+    getline(cin, autor);
+    cin.clear();
+    fflush(stdin);
+
+    for(vector<Biblioteca *>::iterator it = listBiblioteca.begin(); it != listBiblioteca.end(); it++){
+        
+        Biblioteca *b = (*it);
+
+        if(b->getTitulo().compare(titulo) == 0 && b->getAutor().compare(autor) == 0){
+            biblioteca = b;
+            break;
+        }
+    }
+
+    return biblioteca;
 }
 
 void emprestimoItem(vector<Biblioteca *> &listBiblioteca){

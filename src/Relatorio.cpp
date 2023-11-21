@@ -1,6 +1,3 @@
-#ifndef RELATORIO_H
-#define RELATORIO_H
-
 #include "Relatorio.h"
     
     Relatorio::Relatorio(string titulo, string autor, int ano, string departamento) : Biblioteca(titulo, autor, ano){
@@ -28,5 +25,3 @@
 
         cout << "Departamento responsavel: " << getDepartamento() << endl;
     }
-
-#endif

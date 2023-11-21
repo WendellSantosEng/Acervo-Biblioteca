@@ -1,6 +1,3 @@
-#ifndef FITA_H
-#define FITA_H
-    
 #include "Fita.h"
 
     Fita::Fita(string titulo, string autor, int ano, string duracao, string idioma, string formato) : Midia(titulo, autor, ano, duracao, idioma){
@@ -37,6 +34,3 @@
 
         cout << "Formato: " << getFormato() << endl;
     }
-
-   
-#endif

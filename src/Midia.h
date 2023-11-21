@@ -1,7 +1,9 @@
+#ifndef MIDIA_H
+#define MIDIA_H
+
 #include "Biblioteca.h"
 
 class Midia : public Biblioteca{
-
 
     private:
 
@@ -22,3 +24,5 @@ class Midia : public Biblioteca{
 
         virtual void imprimirMidia();
 };
+
+#endif

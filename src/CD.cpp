@@ -1,6 +1,3 @@
-#ifndef CD_H
-#define CD_H
-
 #include "CD.h"
 
     CD::CD(string titulo, string autor, int ano, string duracao, string idioma, int num_faixa) : Midia(titulo, autor, ano, duracao, idioma){
@@ -28,5 +25,3 @@
         
         cout << "Numero de faixas: " << getNum_Faixa() << endl;
     }
-
-#endif        
