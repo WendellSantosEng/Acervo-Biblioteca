@@ -293,6 +293,18 @@ void cadastrarRelatorio(Relatorio *relatorio){
 
 void removerItem(vector<Biblioteca *> &listBiblioteca){
 
+    Biblioteca *biblioteca = pesquisarItem(listBiblioteca);
+    
+    cout << "Contato removido: \n";
+    biblioteca->imprimirBiblioteca();
+
+    for(vector<Biblioteca *>::iterator it = listBiblioteca.begin(); it != listBiblioteca.end(); it++){
+        if((*it) == biblioteca){
+            listBiblioteca.erase(it);
+            break;
+        }
+    }
+    delete(biblioteca);
 
 }
 

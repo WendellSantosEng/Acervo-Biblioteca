@@ -20,7 +20,7 @@ class Biblioteca{
         //construtor e destrutor
         Biblioteca(string titulo, string autor, int ano);
         Biblioteca();
-        ~Biblioteca();
+        virtual ~Biblioteca();
         
 
         string getTitulo();
