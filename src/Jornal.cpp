@@ -2,7 +2,7 @@
 
 
 
-Jornal::Jornal(string titulo, string autor, int ano, string editora, int issn, string cidade) : Periodico(titulo, autor, ano, editora, issn){
+	Jornal::Jornal(string titulo, string autor, int ano, string editora, int issn, string cidade) : Periodico(titulo, autor, ano, editora, issn){
 
 	}
 	

@@ -24,7 +24,7 @@ class Revista : public Periodico{
     void setAssunto(string assunto);
     void setEdicao(string edicao);
     
-    void imprimirRevista();
+    virtual void imprimirRevista();
 
 };
 

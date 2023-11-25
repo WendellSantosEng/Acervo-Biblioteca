@@ -77,7 +77,11 @@ int main(){
             case 3:
 
                 item_pesquisa = pesquisarItem(listBiblioteca);
-                item_pesquisa->imprimirBiblioteca();
+                if(item_pesquisa != NULL){
+                    item_pesquisa->imprimirBiblioteca();
+                }else{
+                    cout << "Item inexistente na biblioteca" << endl ;
+                }
                 
                 break;
             case 4:
@@ -95,15 +99,6 @@ int main(){
         }
 
     }while(op!=5);
-
-
-
-    /*biblioteca->setAno(2014);
-    biblioteca->setAutor("AUTOR");
-    biblioteca->setTitulo("OBRA");
-
-    cout << "ANO: " << biblioteca->getAno() << " --- AUTOR: " << biblioteca->getAutor();
-    cout << " --- TITULO: " << biblioteca->getTitulo();*/
     
     return 0;
     
@@ -114,7 +109,7 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
 
     do{
         cout << "Insira um valor: " << endl;
-        cout << "Cadastrar qual item?\n1 - CD\n2 - Cadastro de DVD\n3 - Fita\n4 - Mapa\n5 - Cartaz\n6 - Relatorio\n7 - Livro\n8 - Periodico\n9 - Revista\n10 - Jornal\n11 - Trabalho de Conclusao\n12 - Tese\n13 - Dissertacao\n14 - Monografia\n\n15 - Voltar ao Menu Anterior";
+        cout << "Cadastrar qual item?\n1 - CD\n2 - Cadastro de DVD\n3 - Fita\n4 - Mapa\n5 - Cartaz\n6 - Relatorio\n7 - Livro\n8 - Revista\n9 - Jornal\n10 - Tese\n11 - Dissertacao\n12 - Monografia\n\n13 - Voltar ao Menu Anterior";
         cout << "Insira uma opção: ";
 
         cin >> op;
@@ -194,16 +189,6 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
                 break;
             case 8:
 
-                /* cout << "       Cadastro de Periodico      " << endl;
-                Periodico *periodico;
-                periodico = new Periodico();
-                cadastrarPeriodico(periodico);
-                listBiblioteca.push_back(periodico);
-                cout << "Periodico cadastrado com sucesso!" << endl << endl;
-
-                break;  */
-            case 9:
-
                 cout << "       Cadastro de Revista      " << endl;
                 Revista *revista;
                 revista = new Revista();
@@ -212,7 +197,7 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
                 cout << "Revista cadastrada com sucesso!" << endl << endl;
 
                 break;
-            case 10:
+            case 9:
 
                 cout << "       Cadastro de Jornal      " << endl;
                 Jornal *jornal;
@@ -222,17 +207,7 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
                 cout << "Jornal cadastrado com sucesso!" << endl << endl;
 
                 break;
-            case 11:
-
-                /* cout << "       Cadastro de Trabalho de Conclusao      " << endl;
-                TrabalhoDeConclusao *trabalhoDeConclusao;
-                trabalhoDeConclusao = new TrabalhoDeConclusao();
-                cadastrarTrabalhoDeConclusao(trabalhoDeConclusao);
-                listBiblioteca.push_back(trabalhoDeConclusao);
-                cout << "Trabalho de Conclusao cadastrado com sucesso!" << endl << endl;
-
-                break; */
-            case 12:
+            case 10:
 
                 cout << "       Cadastro de Tese      " << endl;
                 Tese *tese;
@@ -242,7 +217,7 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
                 cout << "Tese cadastrada com sucesso!" << endl << endl;
 
                 break;
-            case 13:
+            case 11:
 
                 cout << "       Cadastro de Dissertacao      " << endl;
                 Dissertacao *dissertacao;
@@ -252,7 +227,7 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
                 cout << "Dissertacao cadastrada com sucesso!" << endl << endl;
 
                 break;
-            case 14:
+            case 12:
 
                 cout << "       Cadastro de Monografia      " << endl;
                 Monografia *monografia;
@@ -268,11 +243,11 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
                 break;
         }
 
-        if(op < 1 || op > 15){
+        if(op < 1 || op > 13){
             cout << "Insira uma opcao correta" << endl;
         }
 
-    }while(op != 15);
+    }while(op != 13);
 
 }
 
@@ -344,6 +319,8 @@ void cadastrarDVD(DVD *dvd){
     cout << "   Cadastrar DVD    " << endl << endl;
 
     string resolucao;
+
+    cadastrarMidia(dvd);
 
     cout << "Insira a resolucao: ";
     getline(cin,resolucao);
@@ -625,10 +602,11 @@ void removerItem(vector<Biblioteca *> &listBiblioteca){
 
 }
 
+
 Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca){
 
     string titulo, autor;
-    Biblioteca *biblioteca = NULL;
+    Biblioteca *biblioteca;
 
     cout << "Digite o titulo: ";
     getline(cin, titulo);
@@ -640,6 +618,7 @@ Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca){
     cin.clear();
     fflush(stdin);
 
+
     for(vector<Biblioteca *>::iterator it = listBiblioteca.begin(); it != listBiblioteca.end(); it++){
         
         Biblioteca *b = (*it);
@@ -649,8 +628,12 @@ Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca){
             break;
         }
     }
-
-    return biblioteca;
+    if(biblioteca != NULL){
+        return biblioteca;
+    }else{
+        return NULL;
+    }
+    
 }
 
 void emprestimoItem(vector<Biblioteca *> &listBiblioteca){

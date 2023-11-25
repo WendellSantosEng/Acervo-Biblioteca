@@ -5,7 +5,7 @@
 
 class Cartaz : public Biblioteca{
 
-    private:
+    protected:
 
     string dimensao;
 
@@ -19,7 +19,7 @@ class Cartaz : public Biblioteca{
 
         void setDimensao(string dimensao);
 
-        void imprimirCartaz();
+        virtual void imprimirCartaz();
 };
 
 #endif

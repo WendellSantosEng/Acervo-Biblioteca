@@ -10,7 +10,7 @@ enum{
 
 class Fita : public Midia{
 
-    private:
+    protected:
 
         string formato;
     
@@ -24,7 +24,7 @@ class Fita : public Midia{
 
         void setFormato(string formato);
 
-        void imprimirFita();
+        virtual void imprimirFita();
 
 };
 

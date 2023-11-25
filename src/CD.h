@@ -5,10 +5,9 @@
 
 class CD : public Midia{
 
-    private:
+    protected:
 
         int num_faixa;
-
 
     public:
 
@@ -21,9 +20,7 @@ class CD : public Midia{
 
         void setNum_Faixa(int num_faixa);
 
-
-        void imprimirCD();
-
+        virtual void imprimirCD();
 };
 
 #endif

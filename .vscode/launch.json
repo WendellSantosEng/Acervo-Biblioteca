@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/workspace/vscode c/TRABALHO BIBLIOTECA",
-      "program": "c:/workspace/vscode c/TRABALHO BIBLIOTECA/build/Debug/outDebug",
+      "cwd": ".",
+      "program": "build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

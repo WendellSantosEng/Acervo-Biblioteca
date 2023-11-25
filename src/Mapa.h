@@ -5,7 +5,7 @@
 
 class Mapa : public Biblioteca{
 
-    private:
+    protected:
 
         string escala;
 
@@ -20,7 +20,7 @@ class Mapa : public Biblioteca{
         void setEscala(string escala);
 
 
-        void imprimirMapa();
+        virtual void imprimirMapa();
 
 
 };

@@ -21,7 +21,7 @@ class Monografia : public TrabalhoDeConclusao
 		void setCurso(string curso);
 		void setConclusao(string conclusao);
 		
-		void imprimirConclusao();
+		virtual void imprimirConclusao();
 	
 };
 

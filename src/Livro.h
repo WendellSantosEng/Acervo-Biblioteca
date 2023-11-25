@@ -32,7 +32,7 @@
         void setPaginas(int paginas);
         void setEdicao(string edicao);
         
-        void imprimirLivro();
+        virtual void imprimirLivro();
 
 };
 #endif

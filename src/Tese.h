@@ -18,7 +18,7 @@ class Tese : public TrabalhoDeConclusao{
 
     void setUniversidade(string universidade);
 
-	void imprimirTese();
+	virtual void imprimirTese();
 };
 
 #endif

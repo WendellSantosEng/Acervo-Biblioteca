@@ -4,7 +4,6 @@
 #include "Periodico.h"
 
 
-
 class Jornal : public Periodico{
 
     //ATRIBUTOS DO JORNAL
@@ -21,7 +20,7 @@ class Jornal : public Periodico{
     void setCidade(string cidade);
     
 	
-	void imprimirJornal();
+	virtual void imprimirJornal();
 	
 };
 

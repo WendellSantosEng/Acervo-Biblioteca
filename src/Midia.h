@@ -5,7 +5,7 @@
 
 class Midia : public Biblioteca{
 
-    private:
+    protected:
 
         string duracao;
         string idioma;
@@ -14,7 +14,7 @@ class Midia : public Biblioteca{
 
         Midia(string titulo, string autor, int ano, string duracao, string idioma);
         Midia();
-        ~Midia();
+        virtual ~Midia();
 
         string getDuracao();
         string getIdioma();

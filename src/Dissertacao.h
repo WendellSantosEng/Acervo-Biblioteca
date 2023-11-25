@@ -22,7 +22,7 @@ class Dissertacao : public TrabalhoDeConclusao
     void setDepartamento(string departamento);
     void setMetodologia(string metodologia);
     
-    void imprimirDissertacao();
+    virtual void imprimirDissertacao();
 };
 
 #endif
