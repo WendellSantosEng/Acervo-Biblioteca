@@ -333,9 +333,6 @@ void cadastrarMonografia(Monografia *monografia){
     monografia->setConclusao(conclusao);
 }
 
-
-
-
 Aluno* cadastraAluno(){
 
     Aluno *aluno = new Aluno();
@@ -385,17 +382,13 @@ int entrarSistema(Aluno *listPessoa[],int *pos){
         if(matricula == listPessoa[i]->getMatricula() && cpf == listPessoa[i]->getCpf() ){
 
             cout << "Bem vindo " << listPessoa[i]->getNomeAluno() << "Fique a vontade!" << endl << endl;
-            v=1;
+            return 1;
             *pos = i;
 
-        }else{
-            
+        }else if(i == QUANT_ALUNO-1){
             cout << "Usuario inexistente" << endl << endl;
-            v=0;
+            return 0;
         }
-
     }
-
-    return v;
 }
 
