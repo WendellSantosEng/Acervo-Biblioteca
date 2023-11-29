@@ -81,7 +81,17 @@ class Emprestimo{
         void setRevista(Revista *revista);
         void setTese(Tese *tese);
 
-        void imprimirImprestimo(Emprestimo *emprestimo);
+        
+        void adicionarItem(Biblioteca* item);
+        tm obterDataAtual();
+        tm adicionarDias(tm data, int dias); 
+
+        //void imprimirImprestimo();
+        
+        void imprimirImprestimo();
+        void imprimirSeNaoNulo(Biblioteca* item, const std::string& tipo);
+
+
 };
 
 #endif

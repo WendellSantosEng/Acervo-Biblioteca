@@ -110,7 +110,7 @@ int main(){
                 if(count>0){
                     emprestimo = pesquisaAluno(listEmprestimo,listAluno,pos);
                     if(emprestimo != NULL){
-                        emprestimo->imprimirImprestimo(emprestimo);
+                        emprestimo->imprimirImprestimo();
                     }
                 }else{
                     cout << "Ainda nao ha livros emprestados" << endl << endl;
@@ -339,101 +339,71 @@ Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca){
 Emprestimo *pesquisaAluno(vector<Emprestimo *> &listEmprestimo, Aluno *listaAluno[], int pos){
 
     Emprestimo *emprestimo;
+    emprestimo = NULL;
 
-    for(vector<Emprestimo *>::iterator it = listEmprestimo.begin(); it != listEmprestimo.end(); it++){
+    Emprestimo *emp;
+    vector<Emprestimo *>::iterator it;
+
+    for(it = listEmprestimo.begin(); it != listEmprestimo.end(); it++){
         
-        Emprestimo *emp = (*it);
+        emp = (*it);
 
         if(emp->getAluno()->getNomeAluno() == listaAluno[pos]->getNomeAluno()){
             emprestimo = emp;
             break;
         }
     }
-
     return emprestimo;
 }
-
-
-
 
 int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &listEmprestimo, Aluno *listAluno[], int pos){
 
     int v=0,i,op;
     string nome;
     Biblioteca *item;
-    Emprestimo *emprestimo;
+    Emprestimo *emprestimo = NULL;
+    Emprestimo *emp;
     
     do{
         item = pesquisarItem(listBiblioteca);
-
-        for(vector<Emprestimo *>::iterator it = listEmprestimo.begin(); it != listEmprestimo.end(); it++){
+        
+        if(item != NULL){
+            for(vector<Emprestimo *>::iterator it = listEmprestimo.begin(); it != listEmprestimo.end(); it++){
             
-            Emprestimo *emp = (*it);
+                emp = (*it);
 
-            if(emp->getAluno()->getNomeAluno() == listAluno[pos]->getNomeAluno()){
-                emprestimo = emp;
-                break;
+                if(emp->getAluno()->getNomeAluno() == listAluno[pos]->getNomeAluno()){
+                    emprestimo = emp;
+                    break;
+                }
             }
-        }
+            if(emprestimo == NULL){
 
-        if(emprestimo != NULL){
-            cout << "1- Deseja fazer o imprestimo ou;\n2- Realizar a busca novamente\n3- SAIR";
-            cin >> op;
-            cin.clear();
-            fflush(stdin);
+                cout << "CRIADA NOVA FICHA PARA O ALUNO" << endl;
+                emprestimo = new Emprestimo();
+                emprestimo->setAluno(listAluno[pos]);
+                listEmprestimo.push_back(emprestimo);
+
+            }if(emprestimo != NULL){
+
+                cout << "1- Deseja fazer o imprestimo ou;\n2- Realizar a busca novamente\n3- SAIR";
+                cin >> op;
+                cin.clear();
+                fflush(stdin);
+
+                if(op == 1){
+
+                    emprestimo->adicionarItem(item);
+                    cout << " EMPRESTIMO REALIZADO COM SUCESSO" << endl << endl;
+                    v=1;
+
+                    return v;
+                }
+            }
         }else{
             cout << "Item nao encontrado\n";
             return 0;
         }
 
-
     }while(op != 3);
-
-    if(Cartaz *cartaz = dynamic_cast<Cartaz*>(item)){
-        emprestimo->setCartaz(cartaz);
-    }else if(CD *cd = dynamic_cast<CD*>(item)){
-        emprestimo->setCd(cd);
-    }else if(Dissertacao *dissertacao = dynamic_cast<Dissertacao*>(item)){
-        emprestimo->setDissertacao(dissertacao);
-    }else if(DVD *dvd = dynamic_cast<DVD*>(item)){
-        emprestimo->setDvd(dvd);
-    }else if(Fita *fita = dynamic_cast<Fita*>(item)){
-        emprestimo->setFita(fita);
-    }else if(Jornal *jornal = dynamic_cast<Jornal*>(item)){
-        emprestimo->setJornal(jornal);
-    }else if(Livro* livro = dynamic_cast<Livro*>(item)){
-        emprestimo->setLivro(livro);
-    }else if(Mapa* mapa = dynamic_cast<Mapa*>(item)){
-        emprestimo->setMapa(mapa);
-    }else if(Monografia *monografia = dynamic_cast<Monografia*>(item)){
-        emprestimo->setMonografia(monografia);
-    }else if(Relatorio *relatorio = dynamic_cast<Relatorio*>(item)){
-        emprestimo->setRelatorio(relatorio);
-    }else if(Revista *revista = dynamic_cast<Revista*>(item)){
-        emprestimo->setRevista(revista);
-    }else if(Tese *tese = dynamic_cast<Tese*>(item)){
-        emprestimo->setTese(tese);
-    }else{
-        cout << "O item nao pode ser emprestado" << endl;
-    }
-
-    time_t tempoAtual = time(0);
-    tm* dataAtual = localtime(&tempoAtual);
-
-    int dia = dataAtual->tm_mday;
-    int mes = dataAtual->tm_mon + 1;
-    int ano = dataAtual->tm_year + 1900;
-
-    cout << "Data atual: " << dia << "/" << mes << "/" << ano << endl;
-
-    dataAtual->tm_mday += 14;
-    mktime(dataAtual);
-
-    emprestimo->setDia(dataAtual->tm_mday);
-    emprestimo->setMes(dataAtual->tm_mon + 1);
-    emprestimo->setAno(dataAtual->tm_year + 1900);
-
-    cout << "Data de devolucao do livro: " << emprestimo->getDia() << "/" << emprestimo->getMes() << "/" << emprestimo->getAno() << std::endl;
-
-    return v;
 }

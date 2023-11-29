@@ -130,59 +130,153 @@ void Emprestimo::setTese(Tese *tese){
 }
 
 
-void imprimirImprestimo(Emprestimo *emprestimo){
+void Emprestimo::adicionarItem(Biblioteca* item) {
+
+    try {
+        if (item == nullptr) {
+            cout << "Erro: Tentativa de adicionar item nulo." << endl;
+            return;
+        }
+
+        if (Livro* livro = dynamic_cast<Livro*>(item)) {
+            setLivro(livro);
+        } else if (Revista* revista = dynamic_cast<Revista*>(item)) {
+            setRevista(revista);
+        } else if (CD* cd = dynamic_cast<CD*>(item)) {
+            setCd(cd);
+        } else if (Dissertacao* dissertacao = dynamic_cast<Dissertacao*>(item)) {
+            setDissertacao(dissertacao);
+        } else if (DVD* dvd = dynamic_cast<DVD*>(item)) {
+            setDvd(dvd);
+        } else if (Fita* fita = dynamic_cast<Fita*>(item)) {
+            setFita(fita);
+        } else if (Jornal* jornal = dynamic_cast<Jornal*>(item)) {
+            setJornal(jornal);
+        } else if (Mapa* mapa = dynamic_cast<Mapa*>(item)) {
+            setMapa(mapa);
+        } else if (Monografia* monografia = dynamic_cast<Monografia*>(item)) {
+            setMonografia(monografia);
+        } else if (Relatorio* relatorio = dynamic_cast<Relatorio*>(item)) {
+            setRelatorio(relatorio);
+        } else if (Tese* tese = dynamic_cast<Tese*>(item)) {
+            setTese(tese);
+        } else {
+            cout << "Erro: Tipo de item desconhecido." << endl;
+            return;
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Exceção capturada: " << e.what() << std::endl;
+    } catch (...) {
+        std::cerr << "Exceção desconhecida capturada." << std::endl;
+    }
+
+    tm dataAtual = obterDataAtual();
+
+    int dia = dataAtual.tm_mday;
+    int mes = dataAtual.tm_mon + 1;
+    int ano = dataAtual.tm_year + 1900;
+
+    cout << "Data atual: " << dia << "/" << mes << "/" << ano << std::endl;
+
+    tm dataDevolucao = adicionarDias(dataAtual, 14);
+
+    this->setDia(dataDevolucao.tm_mday);
+    this->setMes(dataDevolucao.tm_mon + 1);
+    this->setAno(dataDevolucao.tm_year + 1900);
+
+    cout << "Data de devolucao do item: " << this->getDia() << "/" << this->getMes() << "/" << this->getAno() << std::endl;
+}
+
+tm Emprestimo::obterDataAtual() {
+    time_t tempoAtual = time(0);
+    return *localtime(&tempoAtual);
+}
+
+tm Emprestimo::adicionarDias(tm data, int dias) {
+    time_t tempo = mktime(&data);
+    tempo += dias * 24 * 60 * 60;
+    return *localtime(&tempo);
+}
+
+/*void Emprestimo::imprimirImprestimo(){
 
     Biblioteca *biblioteca;
-    Cartaz *cartaz = emprestimo->getCartaz();
-    CD *cd = emprestimo->getCd();
-    Dissertacao *dissertacao = emprestimo->getDissertacao();
-    DVD *dvd = emprestimo->getDvd();
-    Fita *fita = emprestimo->getFita();
-    Jornal *jornal = emprestimo->getJornal();
-    Livro *livro = emprestimo->getLivro();
-    Mapa *mapa = emprestimo->getMapa();
-    Monografia *monografia = emprestimo->getMonografia();
-    Relatorio *relatorio = emprestimo->getRelatorio();
-    Revista *revista = emprestimo->getRevista();
-    Tese *tese = emprestimo->getTese();
+    Cartaz *cartaz = this->getCartaz();
+    CD *cd = this->getCd();
+    Dissertacao *dissertacao = this->getDissertacao();
+    DVD *dvd = this->getDvd();
+    Fita *fita = this->getFita();
+    Jornal *jornal = this->getJornal();
+    Livro *livro = this->getLivro();
+    Mapa *mapa = this->getMapa();
+    Monografia *monografia = this->getMonografia();
+    Relatorio *relatorio = this->getRelatorio();
+    Revista *revista = this->getRevista();
+    Tese *tese = this->getTese();
     cout << "Seus itens emprestados:\n\n";
 
-    if(emprestimo->getCartaz() != NULL){
+    if(this->getCartaz() != NULL){
 
         cout << "Cartaz => " << cartaz->imprimirBiblioteca() << "";
 
-    }if(emprestimo->getCd() != NULL){
+    }if(this->getCd() != NULL){
 
         cout << "CD -> " << cd->imprimirBiblioteca() << endl;
 
-    }if(emprestimo->getDissertacao() != NULL){
+    }if(this->getDissertacao() != NULL){
         
         cout << "Dissertacao -> " << dissertacao->imprimirBiblioteca() << endl;
 
-    }if(emprestimo->getDvd() != NULL){
+    }if(this->getDvd() != NULL){
 
         cout << "DVD -> " << dvd->imprimirBiblioteca() << endl;
 
-    }if(emprestimo->getFita() != NULL){
+    }if(this->getFita() != NULL){
 
         cout << "Fita -> " << fita->imprimirBiblioteca() << endl;
 
-    }if(emprestimo->getJornal() != NULL){
+    }if(this->getJornal() != NULL){
 
         cout << "Jornal -> " << jornal->imprimirBiblioteca() << endl;
 
-    }if(emprestimo->getLivro() != NULL){
+    }if(this->getLivro() != NULL){
 
         cout << "Livro -> " << livro->imprimirBiblioteca() << endl;
 
-    }if(emprestimo->getMapa() != NULL){
+    }if(this->getMapa() != NULL){
 
         cout << "Mapa -> " << mapa->imprimirBiblioteca() << endl;
 
-    }if(emprestimo->getCartaz() != NULL){
+    }if(this->getCartaz() != NULL){
 
         cout << "Cartaz -> " << cartaz->imprimirBiblioteca() << endl;
     }
 
 
+}*/
+
+
+void Emprestimo::imprimirImprestimo() {
+    cout << "Seus itens emprestados:\n\n";
+
+    imprimirSeNaoNulo(getCartaz(), "Cartaz");
+    imprimirSeNaoNulo(getCd(), "CD");
+    imprimirSeNaoNulo(getDissertacao(), "Dissertacao");
+    imprimirSeNaoNulo(getDvd(), "DVD");
+    imprimirSeNaoNulo(getFita(), "Fita");
+    imprimirSeNaoNulo(getJornal(), "Jornal");
+    imprimirSeNaoNulo(getLivro(), "Livro");
+    imprimirSeNaoNulo(getMapa(), "Mapa");
+    imprimirSeNaoNulo(getMonografia(), "Monografia");
+    imprimirSeNaoNulo(getRelatorio(), "Relatorio");
+    imprimirSeNaoNulo(getRevista(), "Revista");
+    imprimirSeNaoNulo(getTese(), "Tese");
+}
+
+void Emprestimo::imprimirSeNaoNulo(Biblioteca* item, const std::string& tipo) {
+    if (item != nullptr) {
+        std::cout << tipo << " -> ";
+        item->imprimirBiblioteca();
+        std::cout << std::endl;
+    }
 }

@@ -8,6 +8,7 @@
 #include <string>
 #include <ctime>
 #include <limits>
+#include <chrono>
 
 using namespace std;
 
@@ -36,7 +37,7 @@ class Biblioteca{
         void setAutor(string autor);
         void setAno(int ano);
 
-        virtual void imprimirBiblioteca();
+        virtual void imprimirBiblioteca() = 0;
 };
 
 #endif
