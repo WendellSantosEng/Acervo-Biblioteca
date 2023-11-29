@@ -19,7 +19,7 @@ class Cartaz : public Biblioteca{
 
         void setDimensao(string dimensao);
 
-        virtual void imprimirCartaz();
+        virtual void imprimirBiblioteca();
 };
 
 #endif

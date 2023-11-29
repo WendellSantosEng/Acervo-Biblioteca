@@ -18,38 +18,46 @@
 #include "Monografia.h"
 #include "DVD.h"
 
+#include "CadastroItens.h"
+#include "Aluno.h"
+#include "Emprestimo.h"
+
 void cadastrarItem(vector<Biblioteca *> &listBiblioteca);
 void removerItem(vector<Biblioteca *> &listBiblioteca);
 Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca);
-void emprestimoItem(vector<Biblioteca *> &listBiblioteca);
+int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &listEmprestimo, Aluno *listAluno[], int pos);
+Emprestimo *pesquisaAluno(vector<Emprestimo *> &listEmprestimo, Aluno *listaAluno[], int pos);
 
-void cadastrarItemAcervo(Biblioteca *biblioteca); // Propriedades Gerais
-void cadastrarMidia(Midia *midia); // Classe Mae Midia
-void cadastrarPeriodico(Periodico *periodico); // Classe Mae Periodico
-void cadastrarTrabalhoDeConclusao(TrabalhoDeConclusao *trabalhoDeConclusao); //Classe Mae Trabalho de Conclusao
-
-
-void cadastrarCD(CD *cd); 
-void cadastrarDVD(DVD *dvd);
-void cadastrarFita(Fita *fita);
-void cadastrarMapa(Mapa *mapa);
-void cadastrarCartaz(Cartaz *cartaz);
-void cadastrarRelatorio(Relatorio *relatorio);
-void cadastrarLivro(Livro *livro);
-void cadastrarPeriodico(Periodico *periodico);
-void cadastrarRevista(Revista *revista);
-void cadastrarJornal(Jornal *jornal);
-void cadastrarTrabalhoDeConclusao(TrabalhoDeConclusao *trabalhoDeConclusao);
-void cadastrarTese(Tese *tese);
-void cadastrarDissertacao(Dissertacao *dissertacao);
-void cadastrarMonografia(Monografia *monografia);
 
 int main(){
 
     vector<Biblioteca *> listBiblioteca;
     Biblioteca *item_pesquisa;
 
-    int op,op2;
+    Aluno *listAluno[QUANT_ALUNO];
+    vector<Emprestimo *>listEmprestimo;
+
+    Emprestimo *emprestimo;
+
+    int op,op2,ver=0, pos=0, count =0;
+
+    cout << "       CADASTRO DE ALUNOS      " << endl << endl;
+
+    for(int i=0;i<QUANT_ALUNO;i++){
+
+        Aluno *aluno = cadastraAluno();
+        listAluno[i] = aluno;
+        cout << "Nome: " << listAluno[i]->getNomeAluno()  << " matricula: " << listAluno[i]->getMatricula() << " cpf: " << listAluno[i]->getCpf() << endl << endl;
+    }
+
+    ver = entrarSistema(listAluno,&pos);
+
+    if(ver == 1){
+        cout << "Entrada feita com sucesso" << endl;
+    }else {
+        cout << "Erro na entrada" << endl;
+    }
+
 
     do{
 
@@ -58,7 +66,8 @@ int main(){
         cout << "2 -> Remover item do acervo\n";
         cout << "3 -> Verificar disponibilidade de item no acervo\n";
         cout << "4 -> Realizar emprestimo\n";
-        cout << "5 -> Sair da Biblioteca\n";
+        cout << "5 -> Verificar suas pendencias\n";
+        cout << "6 -> Sair da Biblioteca\n";
 
         cin >> op;
         cin.clear();
@@ -86,19 +95,37 @@ int main(){
                 break;
             case 4:
 
-                emprestimoItem(listBiblioteca);
+                ver = emprestimoItem(listBiblioteca, listEmprestimo, listAluno, pos);
+
+                if(ver == 1){
+                    cout << "Item emprestado com sucesso" << endl << endl;
+                    count ++;
+                }else{
+                    cout << "Nao foi possivel realizar o emprestimo" << endl << endl;
+                }
+
+                break;
+            case 5:
+
+                if(count>0){
+                    emprestimo = pesquisaAluno(listEmprestimo,listAluno,pos);
+                    if(emprestimo != NULL){
+                        emprestimo->imprimirImprestimo(emprestimo);
+                    }
+                }else{
+                    cout << "Ainda nao ha livros emprestados" << endl << endl;
+                }
+
                 break;
             default:
 
                 break;
         }
-
-
-        if(op < 1 || op > 5){
+        if(op < 1 || op > 6){
             cout << "Insira uma opcao valida\n";
         }
 
-    }while(op!=5);
+    }while(op!=6);
     
     return 0;
     
@@ -251,345 +278,17 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
 
 }
 
-void cadastrarItemAcervo(Biblioteca *biblioteca){
-
-    string titulo;
-    string autor;
-    int ano;
-
-    cout << "Insira o titulo: ";
-    getline(cin, titulo);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira o autor: ";
-    getline(cin, autor);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira o ano de publicação: ";
-    cin >> ano;
-    cin.clear();
-    fflush(stdin);
-
-    biblioteca->setTitulo(titulo);
-    biblioteca->setAutor(autor);
-    biblioteca->setAno(ano);
-}
-
-void cadastrarMidia(Midia *midia){
-
-    cadastrarItemAcervo(midia);
-
-    string duracao;
-    string idioma;
-
-    cout << "Insira a duracao: ";
-    getline(cin,duracao);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira o idioma: ";
-    getline(cin,idioma);
-    cin.clear();
-    fflush(stdin);
-
-    midia->setDuracao(duracao);
-    midia->setIdioma(idioma);
-}
-
-void cadastrarCD(CD *cd){
-    
-    cout << "   Cadastrar CD    " << endl << endl;
-
-    int num_faixa;
-
-    cadastrarMidia(cd);
-
-    cout << "Insira o numero de faixas: ";
-    cin >> num_faixa;
-    cin.clear();
-    fflush(stdin);
-
-    cd->setNum_Faixa(num_faixa);
-}
-
-void cadastrarDVD(DVD *dvd){
-
-    cout << "   Cadastrar DVD    " << endl << endl;
-
-    string resolucao;
-
-    cadastrarMidia(dvd);
-
-    cout << "Insira a resolucao: ";
-    getline(cin,resolucao);
-    cin.clear();
-    fflush(stdin);
-
-    dvd->setResolucao(resolucao);
-}
-
-void cadastrarFita(Fita *fita){
-
-    string formato;
-
-    cout << "       Cadastrar Fita      " << endl << endl;
-
-    cadastrarMidia(fita);
-
-    cout << "Insira o formato: " << endl;
-    cin >> formato;
-    cin.clear();
-    fflush(stdin);
-
-    fita->setFormato(formato);
-}
-
-void cadastrarMapa(Mapa *mapa){
-
-    cout << "       Cadastrar Mapa     " << endl <<endl;
-    
-    cadastrarItemAcervo(mapa);
-
-    string escala;
-
-    cout << "Insira a escala: ";
-    getline(cin,escala);
-    cin.clear();
-    fflush(stdin);
-
-    mapa->setEscala(escala);
-}
-
-void cadastrarCartaz(Cartaz *cartaz){
-
-    cout << "       Cadastrar Cartaz     " << endl <<endl;
-    
-    cadastrarItemAcervo(cartaz);
-
-    string dimensao;
-
-    cout << "Insira a dimensao: ";
-    getline(cin,dimensao);
-    cin.clear();
-    fflush(stdin);
-
-    cartaz->setDimensao(dimensao);
-}
-
-void cadastrarRelatorio(Relatorio *relatorio){
-
-    cout << "       Cadastrar Relatorio     " << endl <<endl;
-    
-    cadastrarItemAcervo(relatorio);
-
-    string departamento;
-
-    cout << "Insira a departamento: ";
-    getline(cin,departamento);
-    cin.clear();
-    fflush(stdin);
-
-    relatorio->setDepartamento(departamento);
-}
-
-void cadastrarLivro(Livro *livro){
-
-    cout << "       Cadastrar Livro     " << endl <<endl;
-
-    cadastrarItemAcervo(livro);
-
-    string editoraLivro;
-    string isbn;
-    int paginas;
-    string edicao;
-
-    cout << "Insira a Editora do Livro: ";
-    getline(cin,editoraLivro);
-    cin.clear();
-    fflush(stdin);
-
-    livro->setEditoraLivro(editoraLivro);
-
-    cout << "Insira o ISBN: ";
-    getline(cin,isbn);
-    cin.clear();
-    fflush(stdin);
-
-    livro->setIsbn(isbn);
-
-    cout << "Insira a quantidade de paginas: ";
-    cin >> paginas;
-    cin.clear();
-    fflush(stdin);
-
-    livro->setPaginas(paginas);
-
-    cout << "Insira a edição do livro: ";
-    getline(cin, edicao);
-    cin.clear();
-    fflush(stdin);
-
-    livro->setEdicao(edicao);
-}
-
-void cadastrarPeriodico(Periodico *periodico){
-
-    cadastrarItemAcervo(periodico);
-
-    string editora;
-	int issn;
-
-    cout << "Insira a editora: ";
-    getline(cin,editora);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira o ISSN: ";
-    cin >> issn;
-    cin.clear();
-    fflush(stdin);
-
-    periodico->setEditora(editora);
-    periodico->setIssn(issn);
-}
-
-void cadastrarRevista(Revista *revista){
-
-    cout << "   Cadastrar Revista    " << endl << endl;
-
-    string assunto;
-    string edicao;
-
-    cadastrarPeriodico(revista);
-
-    cout << "Insira o assunto: ";
-    getline(cin,assunto);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira a edicao: ";
-    getline(cin,edicao);
-    cin.clear();
-    fflush(stdin);
-
-    revista->setAssunto(assunto);
-    revista->setEdicao(edicao);
-}
-
-void cadastrarJornal(Jornal *jornal){
-
-    cout << "   Cadastrar Jornal    " << endl << endl;
-
-    string cidade;
-
-    cadastrarPeriodico(jornal);
-
-    cout << "Insira a cidade: ";
-    getline(cin,cidade);
-    cin.clear();
-    fflush(stdin);
-
-    jornal->setCidade(cidade);
-}
-
-void cadastrarTrabalhoDeConclusao(TrabalhoDeConclusao *trabalhoDeConclusao){
-
-    cadastrarItemAcervo(trabalhoDeConclusao);
-
-    string orientador;
-    string dataDefesa;
-    string tema;
-
-    cout << "Insira o Orientador: ";
-    getline(cin,orientador);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira a data de defesa: ";
-    getline(cin,dataDefesa);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira o tema: ";
-    getline(cin,tema);
-    cin.clear();
-    fflush(stdin);
-
-    trabalhoDeConclusao->setOrientador(orientador);
-    trabalhoDeConclusao->setDataDefesa(dataDefesa);
-    trabalhoDeConclusao->setTema(tema);
-}
-
-void cadastrarTese(Tese *tese){
-
-    cout << "   Cadastrar Tese    " << endl << endl;
-
-    string universidade;
-
-    cadastrarTrabalhoDeConclusao(tese);
-
-    cout << "Insira a Universidade: ";
-    getline(cin,universidade);
-    cin.clear();
-    fflush(stdin);
-
-    tese->setUniversidade(universidade);
-}
-
-void cadastrarDissertacao(Dissertacao *dissertacao){
-
-    cout << "   Cadastrar Dissertacao    " << endl << endl;
-
-    string departamento;
-    string metodologia;
-
-    cadastrarTrabalhoDeConclusao(dissertacao);
-
-    cout << "Insira o departamento: ";
-    getline(cin,departamento);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira a metodologia: ";
-    getline(cin,metodologia);
-    cin.clear();
-    fflush(stdin);
-
-    dissertacao->setDepartamento(departamento);
-    dissertacao->setMetodologia(metodologia);
-}
-
-void cadastrarMonografia(Monografia *monografia){
-
-    cout << "   Cadastrar Monografia    " << endl << endl;
-
-    string curso;
-    string conclusao;
-
-    cadastrarTrabalhoDeConclusao(monografia);
-
-    cout << "Insira o curso: ";
-    getline(cin,curso);
-    cin.clear();
-    fflush(stdin);
-
-    cout << "Insira a data de conclusao: ";
-    getline(cin,conclusao);
-    cin.clear();
-    fflush(stdin);
-
-    monografia->setCurso(curso);
-    monografia->setConclusao(conclusao);
-}
-
 
 void removerItem(vector<Biblioteca *> &listBiblioteca){
 
     Biblioteca *biblioteca = pesquisarItem(listBiblioteca);
+
+    if(biblioteca == NULL){
+        printf("Item nao existe na biblioteca!\n");
+        return;
+    }
     
-    cout << "Contato removido: \n";
+    cout << "Item do acervo removido: \n";
     biblioteca->imprimirBiblioteca();
 
     for(vector<Biblioteca *>::iterator it = listBiblioteca.begin(); it != listBiblioteca.end(); it++){
@@ -636,7 +335,105 @@ Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca){
     
 }
 
-void emprestimoItem(vector<Biblioteca *> &listBiblioteca){
+
+Emprestimo *pesquisaAluno(vector<Emprestimo *> &listEmprestimo, Aluno *listaAluno[], int pos){
+
+    Emprestimo *emprestimo;
+
+    for(vector<Emprestimo *>::iterator it = listEmprestimo.begin(); it != listEmprestimo.end(); it++){
+        
+        Emprestimo *emp = (*it);
+
+        if(emp->getAluno()->getNomeAluno() == listaAluno[pos]->getNomeAluno()){
+            emprestimo = emp;
+            break;
+        }
+    }
+
+    return emprestimo;
+}
 
 
+
+
+int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &listEmprestimo, Aluno *listAluno[], int pos){
+
+    int v=0,i,op;
+    string nome;
+    Biblioteca *item;
+    Emprestimo *emprestimo;
+    
+    do{
+        item = pesquisarItem(listBiblioteca);
+
+        for(vector<Emprestimo *>::iterator it = listEmprestimo.begin(); it != listEmprestimo.end(); it++){
+            
+            Emprestimo *emp = (*it);
+
+            if(emp->getAluno()->getNomeAluno() == listAluno[pos]->getNomeAluno()){
+                emprestimo = emp;
+                break;
+            }
+        }
+
+        if(emprestimo != NULL){
+            cout << "1- Deseja fazer o imprestimo ou;\n2- Realizar a busca novamente\n3- SAIR";
+            cin >> op;
+            cin.clear();
+            fflush(stdin);
+        }else{
+            cout << "Item nao encontrado\n";
+            return 0;
+        }
+
+
+    }while(op != 3);
+
+    if(Cartaz *cartaz = dynamic_cast<Cartaz*>(item)){
+        emprestimo->setCartaz(cartaz);
+    }else if(CD *cd = dynamic_cast<CD*>(item)){
+        emprestimo->setCd(cd);
+    }else if(Dissertacao *dissertacao = dynamic_cast<Dissertacao*>(item)){
+        emprestimo->setDissertacao(dissertacao);
+    }else if(DVD *dvd = dynamic_cast<DVD*>(item)){
+        emprestimo->setDvd(dvd);
+    }else if(Fita *fita = dynamic_cast<Fita*>(item)){
+        emprestimo->setFita(fita);
+    }else if(Jornal *jornal = dynamic_cast<Jornal*>(item)){
+        emprestimo->setJornal(jornal);
+    }else if(Livro* livro = dynamic_cast<Livro*>(item)){
+        emprestimo->setLivro(livro);
+    }else if(Mapa* mapa = dynamic_cast<Mapa*>(item)){
+        emprestimo->setMapa(mapa);
+    }else if(Monografia *monografia = dynamic_cast<Monografia*>(item)){
+        emprestimo->setMonografia(monografia);
+    }else if(Relatorio *relatorio = dynamic_cast<Relatorio*>(item)){
+        emprestimo->setRelatorio(relatorio);
+    }else if(Revista *revista = dynamic_cast<Revista*>(item)){
+        emprestimo->setRevista(revista);
+    }else if(Tese *tese = dynamic_cast<Tese*>(item)){
+        emprestimo->setTese(tese);
+    }else{
+        cout << "O item nao pode ser emprestado" << endl;
+    }
+
+    time_t tempoAtual = time(0);
+    tm* dataAtual = localtime(&tempoAtual);
+
+    int dia = dataAtual->tm_mday;
+    int mes = dataAtual->tm_mon + 1;
+    int ano = dataAtual->tm_year + 1900;
+
+    cout << "Data atual: " << dia << "/" << mes << "/" << ano << endl;
+
+    dataAtual->tm_mday += 14;
+    mktime(dataAtual);
+
+    emprestimo->setDia(dataAtual->tm_mday);
+    emprestimo->setMes(dataAtual->tm_mon + 1);
+    emprestimo->setAno(dataAtual->tm_year + 1900);
+
+    cout << "Data de devolucao do livro: " << emprestimo->getDia() << "/" << emprestimo->getMes() << "/" << emprestimo->getAno() << std::endl;
+
+    return v;
 }

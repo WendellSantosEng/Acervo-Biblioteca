@@ -29,8 +29,8 @@
     }
 
 
-    void Fita::imprimirFita(){
-        Midia::imprimirMidia();
+    void Fita::imprimirBiblioteca(){
+        Midia::imprimirBiblioteca();
 
         cout << "Formato: " << getFormato() << endl;
     }

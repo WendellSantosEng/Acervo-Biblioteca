@@ -28,7 +28,7 @@ class TrabalhoDeConclusao : public Biblioteca{
     void setDataDefesa(string dataDefesa);
     void setTema(string tema);
     
-    virtual void imprimirTrabalhoDeConclusao();
+    virtual void imprimirBiblioteca();
     
 };
 

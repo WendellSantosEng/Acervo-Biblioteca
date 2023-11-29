@@ -33,7 +33,7 @@ TrabalhoDeConclusao::~TrabalhoDeConclusao()
         this->tema=tema;
     }
 
-	void TrabalhoDeConclusao::imprimirTrabalhoDeConclusao(){
+	void TrabalhoDeConclusao::imprimirBiblioteca(){
 		Biblioteca::imprimirBiblioteca();
 		
 		cout << "Orientador: "<< getOrientador() << endl;

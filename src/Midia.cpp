@@ -30,9 +30,9 @@
     }
     
 
-    void Midia::imprimirMidia(){
+    void Midia::imprimirBiblioteca(){
         Biblioteca::imprimirBiblioteca();
         
-        cout << "Duracao: " << getDuracao();
-        cout << "Idioma: " << getIdioma();
+        cout << "Duracao: " << getDuracao() << endl;
+        cout << "Idioma: " << getIdioma() << endl;
     }

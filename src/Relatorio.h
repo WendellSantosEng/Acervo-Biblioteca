@@ -19,7 +19,7 @@ class Relatorio : public Biblioteca{
         
         void setDepartamento(string departamento);
 
-        virtual void imprimirRelatorio();
+        virtual void imprimirBiblioteca();
 };
 
 #endif

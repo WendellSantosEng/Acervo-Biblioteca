@@ -20,7 +20,7 @@ class CD : public Midia{
 
         void setNum_Faixa(int num_faixa);
 
-        virtual void imprimirCD();
+        virtual void imprimirBiblioteca();
 };
 
 #endif

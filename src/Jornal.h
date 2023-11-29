@@ -20,7 +20,7 @@ class Jornal : public Periodico{
     void setCidade(string cidade);
     
 	
-	virtual void imprimirJornal();
+	virtual void imprimirBiblioteca();
 	
 };
 

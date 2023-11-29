@@ -20,7 +20,7 @@
         this->escala = escala;
     }
 
-    void Mapa::imprimirMapa(){
+    void Mapa::imprimirBiblioteca(){
         Biblioteca::imprimirBiblioteca();
 
         cout << "Escala: " << getEscala() << endl;

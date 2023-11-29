@@ -24,7 +24,7 @@ class Fita : public Midia{
 
         void setFormato(string formato);
 
-        virtual void imprimirFita();
+        virtual void imprimirBiblioteca();
 
 };
 

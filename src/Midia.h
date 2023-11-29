@@ -22,7 +22,7 @@ class Midia : public Biblioteca{
         void setDuracao(string duracao);
         void setIdioma(string idioma);
 
-        virtual void imprimirMidia();
+        virtual void imprimirBiblioteca();
 };
 
 #endif

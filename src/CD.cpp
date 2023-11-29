@@ -20,8 +20,8 @@
         this->num_faixa = num_faixa;
     }
 
-    void CD::imprimirCD(){
-        Midia::imprimirMidia();
+    void CD::imprimirBiblioteca(){
+        Midia::imprimirBiblioteca();
         
         cout << "Numero de faixas: " << getNum_Faixa() << endl;
     }

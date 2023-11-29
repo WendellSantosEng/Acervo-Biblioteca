@@ -1,8 +1,13 @@
 #ifndef BIBLIOTECA_H
 #define BIBLIOTECA_H
 
+#define QUANT_ALUNO 5
+#define ITEM_ACERVO 50
+
 #include <iostream>
 #include <string>
+#include <ctime>
+#include <limits>
 
 using namespace std;
 

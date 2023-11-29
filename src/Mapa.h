@@ -20,7 +20,7 @@ class Mapa : public Biblioteca{
         void setEscala(string escala);
 
 
-        virtual void imprimirMapa();
+        virtual void imprimirBiblioteca();
 
 
 };

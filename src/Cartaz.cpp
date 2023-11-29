@@ -21,7 +21,7 @@
     }
 
     
-    void Cartaz::imprimirCartaz(){
+    void Cartaz::imprimirBiblioteca(){
         Biblioteca::imprimirBiblioteca();
 
         cout << "Dimensao: " << getDimensao() << endl;

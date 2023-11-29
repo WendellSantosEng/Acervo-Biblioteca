@@ -38,7 +38,7 @@
         this->edicao = edicao;
     }
 
-	void Livro::imprimirLivro(){
+	void Livro::imprimirBiblioteca(){
 		Biblioteca::imprimirBiblioteca();
 		
 		cout << "Editora: " << getEditoraLivro() << endl;

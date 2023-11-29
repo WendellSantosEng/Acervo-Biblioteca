@@ -23,6 +23,6 @@ class Periodico : public Biblioteca{
 	void setEditora(string editora);
 	void setIssn(int issn);
 	
-	virtual void imprimirPeriodico();
+	virtual void imprimirBiblioteca();
 };
 #endif

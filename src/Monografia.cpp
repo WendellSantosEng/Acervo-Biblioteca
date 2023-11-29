@@ -28,8 +28,8 @@
 	}
 	
 	
-	void Monografia::imprimirConclusao(){
-		TrabalhoDeConclusao::imprimirTrabalhoDeConclusao();
+	void Monografia::imprimirBiblioteca(){
+		TrabalhoDeConclusao::imprimirBiblioteca();
 		
 		cout << "Curso: " << getCurso() << endl;
 		cout << "Conclus�o: " << getConclusao() << endl;

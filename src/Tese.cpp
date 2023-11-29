@@ -21,8 +21,8 @@
         this->universidade =universidade;
     }
 
-	void Tese::imprimirTese(){
-		TrabalhoDeConclusao::imprimirTrabalhoDeConclusao();
+	void Tese::imprimirBiblioteca(){
+		TrabalhoDeConclusao::imprimirBiblioteca();
 		
 		cout << "Universidade: " << getUniversidade() << endl;
 	}

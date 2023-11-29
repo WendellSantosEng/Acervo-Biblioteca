@@ -26,7 +26,7 @@ Periodico::Periodico(string titulo, string autor, int ano, string editora, int i
 		this->issn = issn;
 	}
 
-	void Periodico::imprimirPeriodico(){
+	void Periodico::imprimirBiblioteca(){
 		Biblioteca::imprimirBiblioteca();
 		
 		cout << "Editora: " << getEditora() << endl;

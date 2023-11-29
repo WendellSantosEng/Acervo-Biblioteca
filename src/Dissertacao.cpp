@@ -27,8 +27,8 @@
         this->metodologia = metodologia;
     }
 
-	void Dissertacao::imprimirDissertacao(){
-		TrabalhoDeConclusao::imprimirTrabalhoDeConclusao();
+	void Dissertacao::imprimirBiblioteca(){
+		TrabalhoDeConclusao::imprimirBiblioteca();
 		
 		cout << "Departamento: " << getDepartamento() << endl;
 		cout << "Metodologia: " << getMetodologia() << endl;

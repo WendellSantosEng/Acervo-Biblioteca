@@ -18,7 +18,7 @@ class DVD : public Midia{
         string getResolucao();
         void setResolucao(string resolucao);
 
-        virtual void imprimirDVD();
+        virtual void imprimirBiblioteca();
 
 };
 
