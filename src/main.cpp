@@ -29,7 +29,7 @@ int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &l
 Emprestimo *pesquisaAluno(vector<Emprestimo *> &listEmprestimo, Aluno *listaAluno[], int pos);
 
 
-int main(){
+int main(int argc, char *argv[]){
 
     vector<Biblioteca *> listBiblioteca;
     Biblioteca *item_pesquisa;
@@ -39,9 +39,41 @@ int main(){
 
     Emprestimo *emprestimo;
 
-    int op,op2,ver=0, pos=0, count =0;
+    int op,ver=0, pos=0, count =0, info=0;
 
-    cout << "       CADASTRO DE ALUNOS      " << endl << endl;
+    cout << "BEM VINDO A BIBLIOTECA\n\n";
+
+    cout << "Deseja imprimir as informacoes? 1 - sim, 2- nao";
+    cin >> info;
+    cin.clear();
+    fflush(stdin);
+ 
+    if(info == 1){
+
+        if (argc < 1) {
+            cerr << "Erro: Não é possível obter o caminho do executável." << endl;
+        }
+
+        string caminhoExecutavel = argv[0];
+
+        size_t pos = caminhoExecutavel.find_last_of("\\/");
+        string caminhoArquivo = caminhoExecutavel.substr(0, pos + 1) + "informacoes.txt";
+
+        ifstream arquivo(caminhoArquivo);
+
+        if(!arquivo.is_open()){
+            cout << "Erro ao abrir o arquivo." << endl;
+        }
+
+        string linha;
+        while (getline(arquivo, linha)){
+            cout << linha << endl;
+        }
+
+        arquivo.close();
+    }
+
+    cout << "\n\n       CADASTRO DE ALUNOS      " << endl << endl;
 
     for(int i=0;i<QUANT_ALUNO;i++){
 
@@ -376,7 +408,7 @@ Emprestimo *pesquisaAluno(vector<Emprestimo *> &listEmprestimo, Aluno *listaAlun
 
 int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &listEmprestimo, Aluno *listAluno[], int pos){
 
-    int v=0,i,op;
+    int v=0,op;
     string nome;
     Biblioteca *item;
     Emprestimo *emprestimo = NULL;
@@ -424,4 +456,5 @@ int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &l
         }
 
     }while(op != 3);
+    return 0;
 }
