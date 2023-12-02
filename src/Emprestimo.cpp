@@ -165,9 +165,9 @@ void Emprestimo::adicionarItem(Biblioteca* item) {
             return;
         }
     } catch (const std::exception& e) {
-        std::cerr << "Exceção capturada: " << e.what() << std::endl;
+        std::cerr << "Excecao capturada: " << e.what() << std::endl;
     } catch (...) {
-        std::cerr << "Exceção desconhecida capturada." << std::endl;
+        std::cerr << "Excecao desconhecida capturada." << std::endl;
     }
 
     tm dataAtual = obterDataAtual();
@@ -197,64 +197,6 @@ tm Emprestimo::adicionarDias(tm data, int dias) {
     tempo += dias * 24 * 60 * 60;
     return *localtime(&tempo);
 }
-
-/*void Emprestimo::imprimirImprestimo(){
-
-    Biblioteca *biblioteca;
-    Cartaz *cartaz = this->getCartaz();
-    CD *cd = this->getCd();
-    Dissertacao *dissertacao = this->getDissertacao();
-    DVD *dvd = this->getDvd();
-    Fita *fita = this->getFita();
-    Jornal *jornal = this->getJornal();
-    Livro *livro = this->getLivro();
-    Mapa *mapa = this->getMapa();
-    Monografia *monografia = this->getMonografia();
-    Relatorio *relatorio = this->getRelatorio();
-    Revista *revista = this->getRevista();
-    Tese *tese = this->getTese();
-    cout << "Seus itens emprestados:\n\n";
-
-    if(this->getCartaz() != NULL){
-
-        cout << "Cartaz => " << cartaz->imprimirBiblioteca() << "";
-
-    }if(this->getCd() != NULL){
-
-        cout << "CD -> " << cd->imprimirBiblioteca() << endl;
-
-    }if(this->getDissertacao() != NULL){
-        
-        cout << "Dissertacao -> " << dissertacao->imprimirBiblioteca() << endl;
-
-    }if(this->getDvd() != NULL){
-
-        cout << "DVD -> " << dvd->imprimirBiblioteca() << endl;
-
-    }if(this->getFita() != NULL){
-
-        cout << "Fita -> " << fita->imprimirBiblioteca() << endl;
-
-    }if(this->getJornal() != NULL){
-
-        cout << "Jornal -> " << jornal->imprimirBiblioteca() << endl;
-
-    }if(this->getLivro() != NULL){
-
-        cout << "Livro -> " << livro->imprimirBiblioteca() << endl;
-
-    }if(this->getMapa() != NULL){
-
-        cout << "Mapa -> " << mapa->imprimirBiblioteca() << endl;
-
-    }if(this->getCartaz() != NULL){
-
-        cout << "Cartaz -> " << cartaz->imprimirBiblioteca() << endl;
-    }
-
-
-}*/
-
 
 void Emprestimo::imprimirImprestimo() {
     cout << "Seus itens emprestados:\n\n";

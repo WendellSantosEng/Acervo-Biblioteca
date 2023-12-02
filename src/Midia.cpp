@@ -30,9 +30,12 @@
     }
     
 
-    void Midia::imprimirBiblioteca(){
-        Biblioteca::imprimirBiblioteca();
-        
-        cout << "Duracao: " << getDuracao() << endl;
-        cout << "Idioma: " << getIdioma() << endl;
-    }
+void Midia::imprimirBiblioteca() {
+    Biblioteca::imprimirBiblioteca();
+
+    // Imprimir informações da mídia
+    cout << "| Duracao: " << getDuracao();
+    cout << string(24 - getDuracao().length(), ' ') << "|" << endl;
+    cout << "| Idioma: " << getIdioma();
+    cout << string(25 - getIdioma().length(), ' ') << "|" << endl;
+}

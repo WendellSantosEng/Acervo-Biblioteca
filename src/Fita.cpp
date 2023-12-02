@@ -29,8 +29,12 @@
     }
 
 
-    void Fita::imprimirBiblioteca(){
-        Midia::imprimirBiblioteca();
+void Fita::imprimirBiblioteca() {
+    Midia::imprimirBiblioteca();
 
-        cout << "Formato: " << getFormato() << endl;
-    }
+    // Imprimir informações da fita
+    cout << "| Formato: " << getFormato();
+    cout << string(25 - getFormato().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}

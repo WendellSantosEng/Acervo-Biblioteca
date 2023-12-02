@@ -20,8 +20,12 @@
         this->escala = escala;
     }
 
-    void Mapa::imprimirBiblioteca(){
-        Biblioteca::imprimirBiblioteca();
+void Mapa::imprimirBiblioteca() {
+    Biblioteca::imprimirBiblioteca();
 
-        cout << "Escala: " << getEscala() << endl;
-    }
+    // Imprimir informações do mapa
+    cout << "| Escala: " << getEscala();
+    cout << string(25 - getEscala().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}

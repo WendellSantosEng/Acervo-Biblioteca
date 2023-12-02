@@ -1,7 +1,7 @@
 #ifndef PERIODICO_H
 #define PERIODICO_H
 
-#include "Biblioteca.h"		//OBS: N�O RODOU SEM INCLUIR A BIBLIOTECA NESSE .h, MAS NO LIVRO.h N�O TEM ESSE INCLUDE
+#include "Biblioteca.h"	
 
 class Periodico : public Biblioteca{	
 

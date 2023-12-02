@@ -23,8 +23,12 @@
     }
 
 
-	void Jornal::imprimirBiblioteca(){
-		Periodico::imprimirBiblioteca();
-		
-		cout << "Cidade: " << getCidade() << endl;
-	}
+void Jornal::imprimirBiblioteca() {
+    Periodico::imprimirBiblioteca();
+
+    // Imprimir informações do jornal
+    cout << "| Cidade: " << getCidade();
+    cout << string(25 - getCidade().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}

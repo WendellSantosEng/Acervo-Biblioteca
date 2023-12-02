@@ -38,11 +38,18 @@
         this->edicao = edicao;
     }
 
-	void Livro::imprimirBiblioteca(){
-		Biblioteca::imprimirBiblioteca();
-		
-		cout << "Editora: " << getEditoraLivro() << endl;
-		cout << "ISBN: " << getIsbn() << endl;
-		cout << "Paginas: " << getPaginas() << endl;
-		cout << "Edicao: " << getEdicao() << endl;
-	}
+void Livro::imprimirBiblioteca() {
+    Biblioteca::imprimirBiblioteca();
+
+    // Imprimir informações do livro
+    cout << "| Editora: " << getEditoraLivro();
+    cout << string(27 - getEditoraLivro().length(), ' ') << "|" << endl;
+    cout << "| ISBN: " << getIsbn();
+    cout << string(30 - getIsbn().length(), ' ') << "|" << endl;
+    cout << "| Paginas: " << getPaginas();
+    cout << string(28 - to_string(getPaginas()).length(), ' ') << "|" << endl;
+    cout << "| Edicao: " << getEdicao();
+    cout << string(29 - getEdicao().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}

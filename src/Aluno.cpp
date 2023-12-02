@@ -26,7 +26,6 @@ void Aluno::setNomeAluno(string nome_aluno){
     this->nome_aluno = nome_aluno;
 }
 
-
 void Aluno::setMatricula(int matricula) {
     this->matricula = matricula;
 }

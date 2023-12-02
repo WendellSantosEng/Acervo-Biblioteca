@@ -20,8 +20,12 @@
         this->departamento = departamento;
     }
 
-    void Relatorio::imprimirBiblioteca(){
-        Biblioteca::imprimirBiblioteca();
+void Relatorio::imprimirBiblioteca() {
+    Biblioteca::imprimirBiblioteca();
 
-        cout << "Departamento responsavel: " << getDepartamento() << endl;
-    }
+    // Imprimir informações do relatório
+    cout << "| Departamento responsavel: " << getDepartamento();
+    cout << string(20 - getDepartamento().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}

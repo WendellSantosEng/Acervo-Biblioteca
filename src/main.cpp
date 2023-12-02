@@ -49,25 +49,27 @@ int main(){
         listAluno[i] = aluno;
         cout << "Nome: " << listAluno[i]->getNomeAluno()  << " matricula: " << listAluno[i]->getMatricula() << " cpf: " << listAluno[i]->getCpf() << endl << endl;
     }
+    do{
+        ver = entrarSistema(listAluno,&pos);
 
-    ver = entrarSistema(listAluno,&pos);
-
-    if(ver == 1){
-        cout << "Entrada feita com sucesso" << endl;
-    }else {
-        cout << "Erro na entrada" << endl;
-    }
-
+        if(ver == 1){
+            cout << "Entrada feita com sucesso" << endl;
+        }else {
+            cout << "Erro na entrada" << endl;
+        }
+    }while(ver != 1);
 
     do{
-
-        cout << "Insira uma opção: " << endl;
-        cout << "1 -> Cadastrar novo item no acervo\n";
-        cout << "2 -> Remover item do acervo\n";
-        cout << "3 -> Verificar disponibilidade de item no acervo\n";
-        cout << "4 -> Realizar emprestimo\n";
-        cout << "5 -> Verificar suas pendencias\n";
-        cout << "6 -> Sair da Biblioteca\n";
+        cout << "---------------------------------------------------------------\n";
+        cout << "| Insira uma opcao:                                            |" << endl;
+        cout << "| 1 -> Cadastrar novo item no acervo                           |\n";
+        cout << "| 2 -> Remover item do acervo                                  |\n";
+        cout << "| 3 -> Verificar disponibilidade de item no acervo             |\n";
+        cout << "| 4 -> Realizar emprestimo                                     |\n";
+        cout << "| 5 -> Verificar suas pendencias                               |\n";
+        cout << "| 6 -> Sair da Biblioteca                                      |\n";
+        cout << "---------------------------------------------------------------\n\n";
+        
 
         cin >> op;
         cin.clear();
@@ -89,7 +91,7 @@ int main(){
                 if(item_pesquisa != NULL){
                     item_pesquisa->imprimirBiblioteca();
                 }else{
-                    cout << "Item inexistente na biblioteca" << endl ;
+                    cout << "\n ! ITEM INEXISTENTE NA BIBLIOTECA ! \n" << endl ;
                 }
                 
                 break;
@@ -98,10 +100,10 @@ int main(){
                 ver = emprestimoItem(listBiblioteca, listEmprestimo, listAluno, pos);
 
                 if(ver == 1){
-                    cout << "Item emprestado com sucesso" << endl << endl;
+                    cout << "\nITEM EMPRESTADO COM SUCESSO\n" << endl << endl;
                     count ++;
                 }else{
-                    cout << "Nao foi possivel realizar o emprestimo" << endl << endl;
+                    cout << "\nNAO FOI POSSIVEL REALIZAR O EMPRESTIMO\n" << endl << endl;
                 }
 
                 break;
@@ -113,7 +115,7 @@ int main(){
                         emprestimo->imprimirImprestimo();
                     }
                 }else{
-                    cout << "Ainda nao ha livros emprestados" << endl << endl;
+                    cout << "\nAINDA NAO HA LIVROS EMPRESTADOS\n" << endl << endl;
                 }
 
                 break;
@@ -122,7 +124,7 @@ int main(){
                 break;
         }
         if(op < 1 || op > 6){
-            cout << "Insira uma opcao valida\n";
+            cout << " ! INSIRA UMA OPCAO VALIDA ! \n";
         }
 
     }while(op!=6);
@@ -135,10 +137,27 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
     int op;
 
     do{
-        cout << "Insira um valor: " << endl;
-        cout << "Cadastrar qual item?\n1 - CD\n2 - Cadastro de DVD\n3 - Fita\n4 - Mapa\n5 - Cartaz\n6 - Relatorio\n7 - Livro\n8 - Revista\n9 - Jornal\n10 - Tese\n11 - Dissertacao\n12 - Monografia\n\n13 - Voltar ao Menu Anterior";
-        cout << "Insira uma opção: ";
-
+        cout << "---------------------------------------\n";
+        cout << "| Insira um valor:                     |\n";
+        cout << "| Cadastrar qual item?                 |\n";
+        cout << "| 1 - CD                               |\n";
+        cout << "| 2 - Cadastro de DVD                  |\n";
+        cout << "| 3 - Fita                             |\n";
+        cout << "| 4 - Mapa                             |\n";
+        cout << "| 5 - Cartaz                           |\n";
+        cout << "| 6 - Relatorio                        |\n";
+        cout << "| 7 - Livro                            |\n";
+        cout << "| 8 - Revista                          |\n";
+        cout << "| 9 - Jornal                           |\n";
+        cout << "| 10 - Tese                            |\n";
+        cout << "| 11 - Dissertacao                     |\n";
+        cout << "| 12 - Monografia                      |\n";
+        cout << "|                                      |\n";
+        cout << "| 0 - Voltar ao Menu Anterior          |\n";
+        cout << "|                                      |\n";
+        cout << "---------------------------------------\n";
+        
+        cout << "INSIRA UMA OPCAO: ";
         cin >> op;
         cin.clear();
         fflush(stdin);
@@ -146,122 +165,122 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
         switch(op){
             case 1:
                 
-                cout << "        Cadastro de CD      " << endl << endl;
+                cout << "\n\n =>        Cadastro de CD      <= " << endl << endl;
                 CD *cd;
                 cd = new CD();
                 cadastrarCD(cd);
                 listBiblioteca.push_back(cd);
-                cout << "CD cadastrado com sucesso!" << endl << endl; 
+                cout << "\n CD cadastrado com sucesso! \n" << endl << endl; 
 
                 break;
             case 2:
                 
-                cout << "        Cadastro de DVD      " << endl << endl;
+                cout << "\n\n =>        Cadastro de DVD      <= " << endl << endl;
                 DVD *dvd;
                 dvd = new DVD();
                 cadastrarDVD(dvd);
                 listBiblioteca.push_back(dvd);
-                cout << "DVD cadastrado com sucesso!" << endl << endl; 
+                cout << "\n DVD cadastrado com sucesso!\n " << endl << endl; 
 
                 break;                
             case 3:
                 
-                cout<< "        Cadastro de Fita         "<< endl;
+                cout<< "\n\n =>        Cadastro de Fita         <= "<< endl;
                 Fita *fita;
                 fita = new Fita();
                 cadastrarFita(fita);
                 listBiblioteca.push_back(fita);
-                cout << "Fita cadastrada com sucesso!" << endl << endl;
+                cout << "\n Fita cadastrada com sucesso! \n" << endl << endl;
 
                 break;
             case 4:
 
-                cout << "       Cadastro de Mapa       " << endl;
+                cout << "\n\n =>       Cadastro de Mapa       <= " << endl;
                 Mapa *mapa; 
                 mapa = new Mapa();
                 cadastrarMapa(mapa);
                 listBiblioteca.push_back(mapa);
-                cout << "Mapa cadastrado com sucesso!" << endl << endl;
+                cout << "\n Mapa cadastrado com sucesso! \n" << endl << endl;
 
                 break;
             case 5:
 
-                cout << "       Cadastro de Cartaz      " << endl;
+                cout << "\n\n =>       Cadastro de Cartaz      <= " << endl;
                 Cartaz *cartaz;
                 cartaz = new Cartaz;
                 cadastrarCartaz(cartaz);
                 listBiblioteca.push_back(cartaz);
-                cout << "Cartaz cadastrado com sucesso!" << endl << endl;
+                cout << "\n Cartaz cadastrado com sucesso! \n" << endl << endl;
 
                 break;
             case 6:
 
-                cout << "       Cadastro de Relatorio      " << endl;
+                cout << "\n\n =>       Cadastro de Relatorio      <= " << endl;
                 Relatorio *relatorio;
                 relatorio = new Relatorio();
                 cadastrarRelatorio(relatorio);
                 listBiblioteca.push_back(relatorio);
-                cout << "Relatorio cadastrado com sucesso!" << endl << endl;
+                cout << "\n Relatorio cadastrado com sucesso! \n" << endl << endl;
 
                 break;
             case 7:
 
-                cout << "       Cadastro de Livro      " << endl;
+                cout << "\n\n =>       Cadastro de Livro      <= " << endl;
                 Livro *livro;
                 livro = new Livro();
                 cadastrarLivro(livro);
                 listBiblioteca.push_back(livro);
-                cout << "Livro cadastrado com sucesso!" << endl << endl;
+                cout << "\n Livro cadastrado com sucesso! \n" << endl << endl;
 
                 break;
             case 8:
 
-                cout << "       Cadastro de Revista      " << endl;
+                cout << "\n\n =>       Cadastro de Revista      <= " << endl;
                 Revista *revista;
                 revista = new Revista();
                 cadastrarRevista(revista);
                 listBiblioteca.push_back(revista);
-                cout << "Revista cadastrada com sucesso!" << endl << endl;
+                cout << "\n Revista cadastrada com sucesso! \n" << endl << endl;
 
                 break;
             case 9:
 
-                cout << "       Cadastro de Jornal      " << endl;
+                cout << "\n\n =>       Cadastro de Jornal      <= " << endl;
                 Jornal *jornal;
                 jornal = new Jornal();
                 cadastrarJornal(jornal);
                 listBiblioteca.push_back(jornal);
-                cout << "Jornal cadastrado com sucesso!" << endl << endl;
+                cout << "\n Jornal cadastrado com sucesso!\n " << endl << endl;
 
                 break;
             case 10:
 
-                cout << "       Cadastro de Tese      " << endl;
+                cout << "\n\n =>       Cadastro de Tese      <= " << endl;
                 Tese *tese;
                 tese = new Tese();
                 cadastrarTese(tese);
                 listBiblioteca.push_back(tese);
-                cout << "Tese cadastrada com sucesso!" << endl << endl;
+                cout << "\n Tese cadastrada com sucesso! \n" << endl << endl;
 
                 break;
             case 11:
 
-                cout << "       Cadastro de Dissertacao      " << endl;
+                cout << "\n\n =>       Cadastro de Dissertacao      <= " << endl;
                 Dissertacao *dissertacao;
                 dissertacao = new Dissertacao();
                 cadastrarDissertacao(dissertacao);
                 listBiblioteca.push_back(dissertacao);
-                cout << "Dissertacao cadastrada com sucesso!" << endl << endl;
+                cout << "\n Dissertacao cadastrada com sucesso! \n" << endl << endl;
 
                 break;
             case 12:
 
-                cout << "       Cadastro de Monografia      " << endl;
+                cout << "\n\n =>       Cadastro de Monografia      <= " << endl;
                 Monografia *monografia;
                 monografia = new Monografia();
                 cadastrarMonografia(monografia);
                 listBiblioteca.push_back(monografia);
-                cout << "Monografia cadastrada com sucesso!" << endl << endl;
+                cout << "\n Monografia cadastrada com sucesso!\n " << endl << endl;
 
                 break;
 
@@ -270,11 +289,11 @@ void cadastrarItem(vector<Biblioteca *> &listBiblioteca){
                 break;
         }
 
-        if(op < 1 || op > 13){
-            cout << "Insira uma opcao correta" << endl;
+        if(op < 0 || op > 12){
+            cout << "\n ! Insira uma opcao correta ! " << endl;
         }
 
-    }while(op != 13);
+    }while(op != 0);
 
 }
 
@@ -284,11 +303,11 @@ void removerItem(vector<Biblioteca *> &listBiblioteca){
     Biblioteca *biblioteca = pesquisarItem(listBiblioteca);
 
     if(biblioteca == NULL){
-        printf("Item nao existe na biblioteca!\n");
+        printf("\n Item nao existe na biblioteca!\n");
         return;
     }
     
-    cout << "Item do acervo removido: \n";
+    cout << "\n Item do acervo removido: \n";
     biblioteca->imprimirBiblioteca();
 
     for(vector<Biblioteca *>::iterator it = listBiblioteca.begin(); it != listBiblioteca.end(); it++){
@@ -301,12 +320,11 @@ void removerItem(vector<Biblioteca *> &listBiblioteca){
 
 }
 
-
 Biblioteca *pesquisarItem(vector<Biblioteca *> &listBiblioteca){
 
     string titulo, autor;
-    Biblioteca *biblioteca;
-
+    Biblioteca *biblioteca = NULL;
+    
     cout << "Digite o titulo: ";
     getline(cin, titulo);
     cin.clear();
@@ -379,7 +397,7 @@ int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &l
             }
             if(emprestimo == NULL){
 
-                cout << "CRIADA NOVA FICHA PARA O ALUNO" << endl;
+                cout << "\n CRIADA NOVA FICHA PARA O ALUNO \n " << endl;
                 emprestimo = new Emprestimo();
                 emprestimo->setAluno(listAluno[pos]);
                 listEmprestimo.push_back(emprestimo);
@@ -401,7 +419,7 @@ int emprestimoItem(vector<Biblioteca *> &listBiblioteca, vector<Emprestimo *> &l
                 }
             }
         }else{
-            cout << "Item nao encontrado\n";
+            cout << "\n ITEM NAO ENCONTRADO \n";
             return 0;
         }
 

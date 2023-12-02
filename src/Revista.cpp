@@ -28,9 +28,14 @@
         this->edicao = edicao;
     }
     
-    void Revista::imprimirBiblioteca(){
-    	Periodico::imprimirBiblioteca();
-    	
-    	cout << "Assunto: " << getAssunto() << endl;
-    	cout << "Edicao: " << getEdicao() << endl;
-	}
+void Revista::imprimirBiblioteca() {
+    Periodico::imprimirBiblioteca();
+
+    // Imprimir informações da revista
+    cout << "| Assunto: " << getAssunto();
+    cout << string(27 - getAssunto().length(), ' ') << "|" << endl;
+    cout << "| Edicao: " << getEdicao();
+    cout << string(28 - getEdicao().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}

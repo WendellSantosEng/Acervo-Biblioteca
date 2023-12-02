@@ -37,7 +37,15 @@
     }
 
     void Biblioteca::imprimirBiblioteca(){
-        cout << "Titulo: " << getTitulo() << endl;
-        cout << "Autor: " << getAutor() << endl;
-        cout << "Ano de publicacao: " << getAno() << endl;
+    
+    // Imprimir borda superior
+    cout << "\n+---------------------------------------+" << endl;
+
+    // Imprimir informações da classe mãe
+    cout << "| Titulo: " << getTitulo();
+    cout << string(31 - getTitulo().length(), ' ') << "|" << endl;
+    cout << "| Autor: " << getAutor();
+    cout << string(32 - getAutor().length(), ' ') << "|" << endl;
+    cout << "| Ano: " << getAno();
+    cout << string(34 - to_string(getAno()).length(), ' ') << "|" << endl;
     }

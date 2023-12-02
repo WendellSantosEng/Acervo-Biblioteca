@@ -2,7 +2,7 @@ CC = g++
 CFLAGS = -Wall
 SRC_DIR = src
 BUILD_DIR = build
-EXECUTABLE = teste
+EXECUTABLE = biblioteca
 
 SRCS := $(wildcard $(SRC_DIR)/*.cpp)
 

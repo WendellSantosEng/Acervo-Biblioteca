@@ -33,10 +33,16 @@ TrabalhoDeConclusao::~TrabalhoDeConclusao()
         this->tema=tema;
     }
 
-	void TrabalhoDeConclusao::imprimirBiblioteca(){
-		Biblioteca::imprimirBiblioteca();
-		
-		cout << "Orientador: "<< getOrientador() << endl;
-		cout << "Data de Defesa: " << getDataDefesa() << endl;
-		cout << "Tema: " << getTema() << endl;
-	}
+void TrabalhoDeConclusao::imprimirBiblioteca() {
+    Biblioteca::imprimirBiblioteca();
+
+    // Imprimir informações do trabalho de conclusão
+    cout << "| Orientador: " << getOrientador();
+    cout << string(24 - getOrientador().length(), ' ') << "|" << endl;
+    cout << "| Data de Defesa: " << getDataDefesa();
+    cout << string(20 - getDataDefesa().length(), ' ') << "|" << endl;
+    cout << "| Tema: " << getTema();
+    cout << string(29 - getTema().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}

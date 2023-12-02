@@ -16,7 +16,7 @@ void cadastrarItemAcervo(Biblioteca *biblioteca){
     cin.clear();
     fflush(stdin);
 
-    cout << "Insira o ano de publicação: ";
+    cout << "Insira o ano de publicacao: ";
     cin >> ano;
     cin.clear();
     fflush(stdin);
@@ -48,8 +48,6 @@ void cadastrarMidia(Midia *midia){
 }
 
 void cadastrarCD(CD *cd){
-    
-    cout << "   Cadastrar CD    " << endl << endl;
 
     int num_faixa;
 
@@ -64,8 +62,6 @@ void cadastrarCD(CD *cd){
 }
 
 void cadastrarDVD(DVD *dvd){
-
-    cout << "   Cadastrar DVD    " << endl << endl;
 
     string resolucao;
 
@@ -83,8 +79,6 @@ void cadastrarFita(Fita *fita){
 
     string formato;
 
-    cout << "       Cadastrar Fita      " << endl << endl;
-
     cadastrarMidia(fita);
 
     cout << "Insira o formato: " << endl;
@@ -96,8 +90,6 @@ void cadastrarFita(Fita *fita){
 }
 
 void cadastrarMapa(Mapa *mapa){
-
-    cout << "       Cadastrar Mapa     " << endl <<endl;
     
     cadastrarItemAcervo(mapa);
 
@@ -112,8 +104,6 @@ void cadastrarMapa(Mapa *mapa){
 }
 
 void cadastrarCartaz(Cartaz *cartaz){
-
-    cout << "       Cadastrar Cartaz     " << endl <<endl;
     
     cadastrarItemAcervo(cartaz);
 
@@ -128,8 +118,6 @@ void cadastrarCartaz(Cartaz *cartaz){
 }
 
 void cadastrarRelatorio(Relatorio *relatorio){
-
-    cout << "       Cadastrar Relatorio     " << endl <<endl;
     
     cadastrarItemAcervo(relatorio);
 
@@ -144,8 +132,6 @@ void cadastrarRelatorio(Relatorio *relatorio){
 }
 
 void cadastrarLivro(Livro *livro){
-
-    cout << "       Cadastrar Livro     " << endl <<endl;
 
     cadastrarItemAcervo(livro);
 
@@ -175,7 +161,7 @@ void cadastrarLivro(Livro *livro){
 
     livro->setPaginas(paginas);
 
-    cout << "Insira a edição do livro: ";
+    cout << "Insira a edicao do livro: ";
     getline(cin, edicao);
     cin.clear();
     fflush(stdin);
@@ -206,8 +192,6 @@ void cadastrarPeriodico(Periodico *periodico){
 
 void cadastrarRevista(Revista *revista){
 
-    cout << "   Cadastrar Revista    " << endl << endl;
-
     string assunto;
     string edicao;
 
@@ -228,8 +212,6 @@ void cadastrarRevista(Revista *revista){
 }
 
 void cadastrarJornal(Jornal *jornal){
-
-    cout << "   Cadastrar Jornal    " << endl << endl;
 
     string cidade;
 
@@ -273,8 +255,6 @@ void cadastrarTrabalhoDeConclusao(TrabalhoDeConclusao *trabalhoDeConclusao){
 
 void cadastrarTese(Tese *tese){
 
-    cout << "   Cadastrar Tese    " << endl << endl;
-
     string universidade;
 
     cadastrarTrabalhoDeConclusao(tese);
@@ -288,8 +268,6 @@ void cadastrarTese(Tese *tese){
 }
 
 void cadastrarDissertacao(Dissertacao *dissertacao){
-
-    cout << "   Cadastrar Dissertacao    " << endl << endl;
 
     string departamento;
     string metodologia;
@@ -311,8 +289,6 @@ void cadastrarDissertacao(Dissertacao *dissertacao){
 }
 
 void cadastrarMonografia(Monografia *monografia){
-
-    cout << "   Cadastrar Monografia    " << endl << endl;
 
     string curso;
     string conclusao;
@@ -381,7 +357,7 @@ int entrarSistema(Aluno *listPessoa[],int *pos){
 
         if(matricula == listPessoa[i]->getMatricula() && cpf == listPessoa[i]->getCpf() ){
 
-            cout << "Bem vindo " << listPessoa[i]->getNomeAluno() << "Fique a vontade!" << endl << endl;
+            cout << "Bem vindo " << listPessoa[i]->getNomeAluno() << ", fique a vontade!" << endl << endl;
             return 1;
             *pos = i;
 

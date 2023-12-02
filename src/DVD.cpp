@@ -18,9 +18,12 @@
         this->resolucao = resolucao;
     }
 
-    void DVD::imprimirBiblioteca(){
-        
-        Midia::imprimirBiblioteca();
+void DVD::imprimirBiblioteca() {
+    Midia::imprimirBiblioteca();
 
-        cout << "Resolucao: " << getResolucao() << endl;
-    }
+    // Imprimir informações do DVD
+    cout << "| Resolucao: " << getResolucao();
+    cout << string(24 - getResolucao().length(), ' ') << "|" << endl;
+
+    cout << "+---------------------------------------+" << endl;
+}
