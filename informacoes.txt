@@ -3,7 +3,7 @@
 |                                                                                                                        |
 |                              TRABALHO PRATICO PROGRAMACAO ORIENTADA A OBJETOS 1                                        |
 |                                                                                                                        |
-|        PAULO CESAR                                                                                                     |
+|        PAULO CESAR REBELO MARTINS                                                                                      |
 |        WENDELL RESENDE DOS SANTOS                                                                                      |
 |                                                                                                                        |
 |        ERIC DE PAULA FERREIRA                                                                                          |
