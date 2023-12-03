@@ -165,9 +165,9 @@ void Emprestimo::adicionarItem(Biblioteca* item) {
             return;
         }
     } catch (const std::exception& e) {
-        std::cerr << "Excecao capturada: " << e.what() << std::endl;
+        cerr << "Excecao capturada: " << e.what() << endl;
     } catch (...) {
-        std::cerr << "Excecao desconhecida capturada." << std::endl;
+        cerr << "Excecao desconhecida capturada." << endl;
     }
 
     tm dataAtual = obterDataAtual();
@@ -176,7 +176,7 @@ void Emprestimo::adicionarItem(Biblioteca* item) {
     int mes = dataAtual.tm_mon + 1;
     int ano = dataAtual.tm_year + 1900;
 
-    cout << "Data atual: " << dia << "/" << mes << "/" << ano << std::endl;
+    cout << "Data atual: " << dia << "/" << mes << "/" << ano << endl;
 
     tm dataDevolucao = adicionarDias(dataAtual, 14);
 

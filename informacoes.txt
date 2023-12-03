@@ -22,7 +22,7 @@
 | para manipular itens na biblioteca. Os dados desses itens sao impressos de maneira polimorfica, mostrando todos        | 
 | os atributos de cada item.                                                                                             | 
 |                                                                                                                        | 
-| Alem disso, o programa inclui um sistema de cadastro de alunos, permitindo que eles acessem a biblioteca atraves       | 
+| Alem disso, o programa inclui um sistema de cadastro de alunos, permitindo que meles acessem a biblioteca atraves      | 
 | de matricula e senha (CPF). Os alunos podem realizar operacoes no acervo, incluindo emprestimos de livros.             | 
 |                                                                                                                        | 
 | O sistema de emprestimo e semelhante a um banco de dados, onde a classe "Emprestimo" mantem registros associando       | 

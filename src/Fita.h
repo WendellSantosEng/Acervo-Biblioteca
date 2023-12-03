@@ -12,17 +12,17 @@ class Fita : public Midia{
 
     protected:
 
-        string formato;
+        int formato;
     
     public:
 
-        Fita(string titulo, string autor, int ano, string duracao, string idioma, string formato);
+        Fita(string titulo, string autor, int ano, string duracao, string idioma, int formato);
         Fita();
         ~Fita();
 
-        string getFormato();
+        int getFormato();
 
-        void setFormato(string formato);
+        void setFormato(int formato);
 
         virtual void imprimirBiblioteca();
 

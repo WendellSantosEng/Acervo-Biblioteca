@@ -39,7 +39,10 @@ int main(int argc, char *argv[]){
 
     Emprestimo *emprestimo;
 
-    int op,ver=0, pos=0, count =0, info=0;
+    int op,ver=0, pos=0, count =0, info=0, entrar=0;
+
+    setlocale(LC_ALL, "portuguese");
+	system("chcp 1252 > nul");
 
     cout << "BEM VINDO A BIBLIOTECA\n\n";
 
@@ -81,85 +84,101 @@ int main(int argc, char *argv[]){
         listAluno[i] = aluno;
         cout << "Nome: " << listAluno[i]->getNomeAluno()  << " matricula: " << listAluno[i]->getMatricula() << " cpf: " << listAluno[i]->getCpf() << endl << endl;
     }
+    
     do{
-        ver = entrarSistema(listAluno,&pos);
 
-        if(ver == 1){
-            cout << "Entrada feita com sucesso" << endl;
-        }else {
-            cout << "Erro na entrada" << endl;
-        }
-    }while(ver != 1);
+        cout << " Qual acao deseja fazer \n" ;
+        cout << " -> Entrar na Biblioteca\n";
+        cout << " -> Fechar a Biblioteca\n";
 
-    do{
-        cout << "---------------------------------------------------------------\n";
-        cout << "| Insira uma opcao:                                            |" << endl;
-        cout << "| 1 -> Cadastrar novo item no acervo                           |\n";
-        cout << "| 2 -> Remover item do acervo                                  |\n";
-        cout << "| 3 -> Verificar disponibilidade de item no acervo             |\n";
-        cout << "| 4 -> Realizar emprestimo                                     |\n";
-        cout << "| 5 -> Verificar suas pendencias                               |\n";
-        cout << "| 6 -> Sair da Biblioteca                                      |\n";
-        cout << "---------------------------------------------------------------\n\n";
-        
-
-        cin >> op;
+        cin >> entrar;
         cin.clear();
         fflush(stdin);
 
-        switch(op){
-
-            case 1:
-
-                cadastrarItem(listBiblioteca);
-                break;
-            case 2:
-
-                removerItem(listBiblioteca);
-                break;
-            case 3:
-
-                item_pesquisa = pesquisarItem(listBiblioteca);
-                if(item_pesquisa != NULL){
-                    item_pesquisa->imprimirBiblioteca();
-                }else{
-                    cout << "\n ! ITEM INEXISTENTE NA BIBLIOTECA ! \n" << endl ;
-                }
-                
-                break;
-            case 4:
-
-                ver = emprestimoItem(listBiblioteca, listEmprestimo, listAluno, pos);
+        if(entrar){
+            do{
+                ver = entrarSistema(listAluno,&pos);
 
                 if(ver == 1){
-                    cout << "\nITEM EMPRESTADO COM SUCESSO\n" << endl << endl;
-                    count ++;
-                }else{
-                    cout << "\nNAO FOI POSSIVEL REALIZAR O EMPRESTIMO\n" << endl << endl;
+                    cout << "Entrada feita com sucesso" << endl;
+                }else {
+                    cout << "Erro na entrada" << endl;
+                }
+            }while(ver != 1);
+
+            do{
+                cout << "---------------------------------------------------------------\n";
+                cout << "| Insira uma opcao:                                            |" << endl;
+                cout << "| 1 -> Cadastrar novo item no acervo                           |\n";
+                cout << "| 2 -> Remover item do acervo                                  |\n";
+                cout << "| 3 -> Verificar disponibilidade de item no acervo             |\n";
+                cout << "| 4 -> Realizar emprestimo                                     |\n";
+                cout << "| 5 -> Verificar suas pendencias                               |\n";
+                cout << "| 6 -> Sair da Biblioteca                                      |\n";
+                cout << "---------------------------------------------------------------\n\n";
+                
+
+                cin >> op;
+                cin.clear();
+                fflush(stdin);
+
+                switch(op){
+
+                    case 1:
+
+                        cadastrarItem(listBiblioteca);
+                        break;
+                    case 2:
+
+                        removerItem(listBiblioteca);
+                        break;
+                    case 3:
+
+                        item_pesquisa = pesquisarItem(listBiblioteca);
+                        if(item_pesquisa != NULL){
+                            item_pesquisa->imprimirBiblioteca();
+                        }else{
+                            cout << "\n ! ITEM INEXISTENTE NA BIBLIOTECA ! \n" << endl ;
+                        }
+                        
+                        break;
+                    case 4:
+
+                        ver = emprestimoItem(listBiblioteca, listEmprestimo, listAluno, pos);
+
+                        if(ver == 1){
+                            cout << "\nITEM EMPRESTADO COM SUCESSO\n" << endl << endl;
+                            count ++;
+                        }else{
+                            cout << "\nNAO FOI POSSIVEL REALIZAR O EMPRESTIMO\n" << endl << endl;
+                        }
+
+                        break;
+                    case 5:
+
+                        if(count>0){
+                            emprestimo = pesquisaAluno(listEmprestimo,listAluno,pos);
+                            if(emprestimo != NULL){
+                                emprestimo->imprimirImprestimo();
+                            }
+                        }else{
+                            cout << "\nAINDA NAO HA LIVROS EMPRESTADOS\n" << endl << endl;
+                        }
+
+                        break;
+                    default:
+
+                        break;
+                }
+                if(op < 1 || op > 6){
+                    cout << " ! INSIRA UMA OPCAO VALIDA ! \n";
                 }
 
-                break;
-            case 5:
-
-                if(count>0){
-                    emprestimo = pesquisaAluno(listEmprestimo,listAluno,pos);
-                    if(emprestimo != NULL){
-                        emprestimo->imprimirImprestimo();
-                    }
-                }else{
-                    cout << "\nAINDA NAO HA LIVROS EMPRESTADOS\n" << endl << endl;
-                }
-
-                break;
-            default:
-
-                break;
+            }while(op!=6);
+        }else{
+            return 0;
         }
-        if(op < 1 || op > 6){
-            cout << " ! INSIRA UMA OPCAO VALIDA ! \n";
-        }
-
-    }while(op!=6);
+    }while(entrar != 0);
     
     return 0;
     

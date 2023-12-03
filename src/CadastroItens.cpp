@@ -77,7 +77,7 @@ void cadastrarDVD(DVD *dvd){
 
 void cadastrarFita(Fita *fita){
 
-    string formato;
+    int formato;
 
     cadastrarMidia(fita);
 
@@ -347,11 +347,13 @@ int entrarSistema(Aluno *listPessoa[],int *pos){
 
     cout << "Insira sua matricula: ";
     cin >> matricula;
-    cin.ignore();
+    cin.clear();
+    fflush(stdin);
 
     cout << "Insira sua senha: ";
     cin >> cpf;
-    cin.ignore();
+    cin.clear();
+    fflush(stdin);
 
     for(int i=0;i<QUANT_ALUNO;i++){
 

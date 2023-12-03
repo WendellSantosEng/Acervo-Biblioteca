@@ -86,12 +86,9 @@ class Emprestimo{
         tm obterDataAtual();
         tm adicionarDias(tm data, int dias); 
 
-        //void imprimirImprestimo();
-        
         void imprimirImprestimo();
         void imprimirSeNaoNulo(Biblioteca* item, const std::string& tipo);
-
-
+        
 };
 
 #endif
