@@ -46,7 +46,7 @@ int main(int argc, char *argv[]){
 
     cout << "BEM VINDO A BIBLIOTECA\n\n";
 
-    cout << "Deseja imprimir as informacoes? 1 - sim, 2- nao";
+    cout << "Deseja imprimir as informacoes? 1 - sim, 2- nao ";
     cin >> info;
     cin.clear();
     fflush(stdin);
