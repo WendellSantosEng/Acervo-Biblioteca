@@ -1,15 +1,12 @@
 #include "Cartaz.h"
 
     Cartaz::Cartaz(string titulo, string autor, int ano, string dimensao){
-
     }
 
     Cartaz::Cartaz(){
-
     }
 
     Cartaz::~Cartaz(){
-
     }
 
     string Cartaz::getDimensao(){
